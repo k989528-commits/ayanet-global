@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,760 +5,191 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#08172e">
 <title>AYANET GLOBAL | Business Control Centre</title>
-
 <style>
-:root {
-  --navy:#08172e;
-  --blue:#142e52;
-  --gold:#e9b949;
-  --light:#f3f6fb;
-  --white:#fff;
-  --muted:#718096;
-  --green:#16834b;
-  --red:#c0392b;
-}
-* {box-sizing:border-box;margin:0;padding:0}
-body {
-  font-family:Arial,sans-serif;
-  background:var(--light);
-  color:#1c2b40;
-  line-height:1.6;
-}
-header {
-  background:var(--navy);
-  color:white;
-  padding:15px 5%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  position:sticky;
-  top:0;
-  z-index:20;
-}
-.logo {font-size:22px;font-weight:bold}
-.logo span {color:var(--gold)}
-nav {display:flex;gap:13px;align-items:center;flex-wrap:wrap}
-nav button {
-  background:none;border:0;color:white;
-  cursor:pointer;font-size:13px;
-}
-nav button:hover {color:var(--gold)}
-.menu {
-  display:none;background:none;border:0;
-  color:white;font-size:25px;cursor:pointer;
-}
-.page {display:none;min-height:75vh}
-.page.active {display:block}
-.hero {
-  background:linear-gradient(120deg,var(--navy),var(--blue));
-  color:white;padding:85px 8%;
-}
-.hero-content {max-width:750px}
-.tag {color:var(--gold);letter-spacing:3px;font-size:12px;font-weight:bold}
-.hero h1 {font-size:clamp(38px,6vw,62px);line-height:1.15;margin:20px 0}
-.hero h1 span {color:var(--gold)}
-.hero p {color:#c3ccda;max-width:650px;margin-bottom:25px}
-.btn {
-  background:var(--gold);color:var(--navy);
-  padding:12px 22px;border:0;border-radius:6px;
-  font-weight:bold;cursor:pointer;text-decoration:none;
-  display:inline-block;
-}
-.btn:hover {background:#ffd36d}
-.btn-secondary {
-  background:transparent;color:white;
-  border:1px solid var(--gold);margin-left:8px;
-}
-.section {padding:60px 7%}
-.heading {text-align:center;margin-bottom:35px}
-.heading h2 {font-size:32px;color:var(--navy)}
-.heading p {color:var(--muted)}
-.grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
-}
-.card {
-  background:white;padding:24px;border-radius:11px;
-  border:1px solid #e2e8f0;
-  box-shadow:0 5px 18px #0b1d3510;
-}
-.card h3 {color:var(--navy);margin:10px 0}
-.card p {color:var(--muted);font-size:14px}
-.product-icon {font-size:36px}
-.status {
-  display:inline-block;margin-top:13px;
-  background:#fff2d1;color:#805b0b;
-  padding:5px 10px;border-radius:20px;font-size:11px;
-  font-weight:bold;
-}
-.form-section {
-  padding:50px 15px;
-  display:flex;justify-content:center;align-items:center;
-}
-.form-card {
-  background:white;width:100%;max-width:470px;
-  padding:30px;border-radius:12px;
-  box-shadow:0 8px 30px #08172e15;
-}
-.form-card h2 {color:var(--navy);margin-bottom:5px}
-.intro {color:var(--muted);margin-bottom:20px;font-size:14px}
-.field {margin-bottom:15px}
-.field label {display:block;font-size:13px;font-weight:bold;margin-bottom:6px}
-.field input,.field select,.field textarea {
-  width:100%;padding:12px;border:1px solid #d5deea;
-  border-radius:6px;font-size:14px;font-family:inherit;
-}
-.field textarea {min-height:90px}
-.full {width:100%}
-.notice {
-  padding:12px;background:#fff5dc;color:#765611;
-  border-radius:6px;font-size:13px;margin:15px 0;
-}
-.success {
-  display:none;padding:12px;background:#e4f6e9;
-  color:#176333;border-radius:6px;margin-top:15px;font-size:14px;
-}
-.switch {text-align:center;margin-top:18px;font-size:14px;color:var(--muted)}
-.switch button {
-  border:0;background:none;color:#9b741b;
-  font-weight:bold;cursor:pointer;
-}
-.about {background:white;text-align:center;padding:65px 8%}
-.about p {max-width:700px;margin:12px auto;color:var(--muted)}
-
-/* ADMIN DASHBOARD */
-.admin-banner {
-  background:linear-gradient(120deg,var(--navy),var(--blue));
-  color:white;padding:35px 6%;
-}
-.admin-banner h1 {font-size:32px}
-.admin-banner p {color:#c3ccda}
-.admin-section {padding:35px 6%}
-.admin-heading {
-  display:flex;justify-content:space-between;
-  align-items:center;gap:12px;flex-wrap:wrap;
-  margin-bottom:22px;
-}
-.admin-heading h2 {color:var(--navy)}
-.stat-card {
-  background:white;padding:22px;border-radius:10px;
-  border:1px solid #e2e8f0;
-}
-.stat-card strong {
-  display:block;font-size:30px;color:var(--navy);
-}
-.stat-card span {font-size:13px;color:var(--muted)}
-.admin-panel {
-  background:white;padding:22px;border-radius:10px;
-  border:1px solid #e2e8f0;margin-top:25px;
-}
-.admin-panel h3 {color:var(--navy);margin-bottom:15px}
-.table-wrap {overflow-x:auto}
-table {width:100%;border-collapse:collapse;min-width:600px}
-th,td {
-  text-align:left;padding:12px;border-bottom:1px solid #e5eaf1;
-  font-size:13px;
-}
-th {background:#f2f5fa;color:var(--navy)}
-td select {
-  padding:7px;border:1px solid #d5deea;border-radius:5px;
-}
-.small-btn {
-  border:0;padding:7px 10px;border-radius:5px;
-  cursor:pointer;font-weight:bold;font-size:12px;
-}
-.delete-btn {background:#ffe5e2;color:#a3281e}
-.empty {color:var(--muted);font-size:14px;padding:15px 0}
-.admin-note {font-size:12px;color:var(--muted);margin-top:15px}
-
-.product-form-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:12px;margin-bottom:15px;
-}
-.product-form-grid input,.product-form-grid select,.product-form-grid textarea {
-  width:100%;padding:11px;border:1px solid #d5deea;
-  border-radius:6px;font:14px Arial,sans-serif;
-}
-.product-form-grid textarea {min-height:75px;grid-column:1/-1}
-.form-actions {display:flex;gap:10px;flex-wrap:wrap}
-.edit-btn {background:#e8effa;color:#17365e}
-footer {
-  background:#050f20;color:#aebbd0;
-  text-align:center;padding:25px;font-size:13px;
-}
-footer span {color:var(--gold)}
-@media(max-width:850px) {
-  header {padding:14px 5%}
-  .menu {display:block}
-  nav {
-    display:none;position:absolute;top:60px;left:0;
-    width:100%;background:var(--navy);
-    padding:20px;flex-direction:column;
-  }
-  nav.open {display:flex}
-  nav button {padding:5px}
-  .hero {padding:65px 7%}
-  .section {padding:45px 6%}
-}
+:root{--navy:#08172e;--blue:#142e52;--gold:#e9b949;--light:#f3f6fb;--white:#fff;--muted:#718096;--green:#16834b;--red:#c0392b}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,sans-serif;background:var(--light);color:#1c2b40;line-height:1.6}
+header{background:var(--navy);color:white;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:20}
+.logo{font-size:22px;font-weight:bold}.logo span{color:var(--gold)}nav{display:flex;gap:13px;align-items:center;flex-wrap:wrap}nav button{background:none;border:0;color:white;cursor:pointer;font-size:13px}nav button:hover{color:var(--gold)}
+.menu{display:none;background:none;border:0;color:white;font-size:25px;cursor:pointer}.page{display:none;min-height:75vh}.page.active{display:block}
+.hero{background:linear-gradient(120deg,var(--navy),var(--blue));color:white;padding:85px 8%}.hero-content{max-width:750px}.tag{color:var(--gold);letter-spacing:3px;font-size:12px;font-weight:bold}
+.hero h1{font-size:clamp(38px,6vw,62px);line-height:1.15;margin:20px 0}.hero h1 span{color:var(--gold)}.hero p{color:#c3ccda;max-width:650px;margin-bottom:25px}
+.btn{background:var(--gold);color:var(--navy);padding:12px 22px;border:0;border-radius:6px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block}.btn:hover{background:#ffd36d}
+.btn-secondary{background:transparent;color:white;border:1px solid var(--gold);margin-left:8px}.section{padding:60px 7%}.heading{text-align:center;margin-bottom:35px}.heading h2{font-size:32px;color:var(--navy)}.heading p{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}.card{background:white;padding:24px;border-radius:11px;border:1px solid #e2e8f0;box-shadow:0 5px 18px #0b1d3510}
+.card h3{color:var(--navy);margin:10px 0}.card p{color:var(--muted);font-size:14px}.product-icon{font-size:36px}
+.status{display:inline-block;margin-top:13px;background:#fff2d1;color:#805b0b;padding:5px 10px;border-radius:20px;font-size:11px;font-weight:bold}
+.form-section{padding:50px 15px;display:flex;justify-content:center;align-items:center}.form-card{background:white;width:100%;max-width:470px;padding:30px;border-radius:12px;box-shadow:0 8px 30px #08172e15}
+.form-card h2{color:var(--navy);margin-bottom:5px}.intro{color:var(--muted);margin-bottom:20px;font-size:14px}.field{margin-bottom:15px}.field label{display:block;font-size:13px;font-weight:bold;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;padding:12px;border:1px solid #d5deea;border-radius:6px;font-size:14px;font-family:inherit}.field textarea{min-height:90px}.full{width:100%}
+.notice{padding:12px;background:#fff5dc;color:#765611;border-radius:6px;font-size:13px;margin:15px 0}.success{display:none;padding:12px;background:#e4f6e9;color:#176333;border-radius:6px;margin-top:15px;font-size:14px}
+.switch{text-align:center;margin-top:18px;font-size:14px;color:var(--muted)}.switch button{border:0;background:none;color:#9b741b;font-weight:bold;cursor:pointer}
+.about{background:white;text-align:center;padding:65px 8%}.about p{max-width:700px;margin:12px auto;color:var(--muted)}
+.admin-banner{background:linear-gradient(120deg,var(--navy),var(--blue));color:white;padding:35px 6%}.admin-banner h1{font-size:32px}.admin-banner p{color:#c3ccda}
+.admin-section{padding:35px 6%}.admin-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:22px}.admin-heading h2{color:var(--navy)}
+.stat-card{background:white;padding:22px;border-radius:10px;border:1px solid #e2e8f0}.stat-card strong{display:block;font-size:30px;color:var(--navy)}.stat-card span{font-size:13px;color:var(--muted)}
+.admin-panel{background:white;padding:22px;border-radius:10px;border:1px solid #e2e8f0;margin-top:25px}.admin-panel h3{color:var(--navy);margin-bottom:15px}
+.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:600px}th,td{text-align:left;padding:12px;border-bottom:1px solid #e5eaf1;font-size:13px}th{background:#f2f5fa;color:var(--navy)}
+td select{padding:7px;border:1px solid #d5deea;border-radius:5px}.small-btn{border:0;padding:7px 10px;border-radius:5px;cursor:pointer;font-weight:bold;font-size:12px}
+.delete-btn{background:#ffe5e2;color:#a3281e}.empty{color:var(--muted);font-size:14px;padding:15px 0}.admin-note{font-size:12px;color:var(--muted);margin-top:15px}
+.product-form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:15px}
+.product-form-grid input,.product-form-grid select,.product-form-grid textarea{width:100%;padding:11px;border:1px solid #d5deea;border-radius:6px;font:14px Arial,sans-serif}
+.product-form-grid textarea{min-height:75px;grid-column:1/-1}.form-actions{display:flex;gap:10px;flex-wrap:wrap}.edit-btn{background:#e8effa;color:#17365e}
+footer{background:#050f20;color:#aebbd0;text-align:center;padding:25px;font-size:13px}footer span{color:var(--gold)}
+@media(max-width:850px){header{padding:14px 5%}.menu{display:block}nav{display:none;position:absolute;top:60px;left:0;width:100%;background:var(--navy);padding:20px;flex-direction:column}nav.open{display:flex}nav button{padding:5px}.hero{padding:65px 7%}.section{padding:45px 6%}}
 </style>
 </head>
-
 <body>
+<header><div class="logo">AYANET <span>GLOBAL</span></div><button class="menu" onclick="toggleMenu()">☰</button>
+<nav id="nav">
+<button onclick="showPage('home')">Home</button><button onclick="showPage('products')">Products</button><button onclick="showPage('register')">Register</button><button onclick="showPage('login')">Customer Login</button><button onclick="showPage('adminLogin')">Admin Login</button><button onclick="showPage('dashboard')">My Account</button><button id="adminNavButton" onclick="showPage('admin')" style="display:none">Admin Centre</button>
+</nav></header>
 
-<header>
-  <div class="logo">AYANET <span>GLOBAL</span></div>
-  <button class="menu" onclick="toggleMenu()">☰</button>
-  <nav id="nav">
-    <button onclick="showPage('home')">Home</button>
-    <button onclick="showPage('products')">Products</button>
-    <button onclick="showPage('register')">Register</button>
-    <button onclick="showPage('login')">Customer Login</button>
-    <button onclick="showPage('adminLogin')">Admin Login</button>
-    <button onclick="showPage('dashboard')">My Account</button>
-    <button onclick="showPage('admin')">Admin Centre</button>
-  </nav>
-</header>
-
-<!-- HOME -->
 <main id="home" class="page active">
-  <section class="hero">
-    <div class="hero-content">
-      <div class="tag">INNOVATION WITHOUT BORDERS</div>
-      <h1>Smart Software.<br><span>Better Businesses.</span></h1>
-      <p>
-        Discover practical digital solutions for businesses,
-        schools and entrepreneurs around the world.
-      </p>
-      <button class="btn" onclick="showPage('products')">Explore Software</button>
-      <button class="btn btn-secondary" onclick="showPage('register')">Join AYANET</button>
-    </div>
-  </section>
+<section class="hero"><div class="hero-content"><div class="tag">INNOVATION WITHOUT BORDERS</div><h1>Smart Software.<br><span>Better Businesses.</span></h1><p>Discover practical digital solutions for businesses, schools and entrepreneurs around the world.</p><button class="btn" onclick="showPage('products')">Explore Software</button><button class="btn btn-secondary" onclick="showPage('register')">Join AYANET</button></div></section>
+<section class="section"><div class="heading"><h2>Technology For Everyone</h2><p>Digital tools designed to solve real-world problems.</p></div><div class="grid">
+<div class="card"><div class="product-icon">🏪</div><h3>Business Solutions</h3><p>Manage stock, sales and business finances.</p></div><div class="card"><div class="product-icon">🎓</div><h3>Education Solutions</h3><p>Digital tools for schools, teachers and learners.</p></div><div class="card"><div class="product-icon">🌐</div><h3>Digital Services</h3><p>Websites and practical digital solutions.</p></div></div></section>
+<section class="about"><h2 id="publicCompanyName">Welcome to AYANET GLOBAL</h2><p id="publicBusinessDescription">We are building an international software company focused on affordable, useful and accessible technology.</p><p id="publicCompanyLocation">International</p><p id="publicCompanyContact"></p><button class="btn" onclick="showPage('register')">Become a Customer</button></section></main>
 
-  <section class="section">
-    <div class="heading">
-      <h2>Technology For Everyone</h2>
-      <p>Digital tools designed to solve real-world problems.</p>
-    </div>
-    <div class="grid">
-      <div class="card">
-        <div class="product-icon">🏪</div>
-        <h3>Business Solutions</h3>
-        <p>Manage stock, sales and business finances.</p>
-      </div>
-      <div class="card">
-        <div class="product-icon">🎓</div>
-        <h3>Education Solutions</h3>
-        <p>Digital tools for schools, teachers and learners.</p>
-      </div>
-      <div class="card">
-        <div class="product-icon">🌐</div>
-        <h3>Digital Services</h3>
-        <p>Websites and practical digital solutions.</p>
-      </div>
-    </div>
-  </section>
+<main id="products" class="page"><section class="section"><div class="heading"><h2>Our Software Catalogue</h2><p>Explore our growing family of digital products.</p></div><div class="grid" id="productList"></div></section></main>
 
-  <section class="about">
-    <h2 id="publicCompanyName">Welcome to AYANET GLOBAL</h2>
-    <p id="publicBusinessDescription">
-      We are building an international software company focused on affordable, useful and accessible technology.
-    </p>
-    <p id="publicCompanyLocation">International</p>
-    <p id="publicCompanyContact"></p>
-    <button class="btn" onclick="showPage('register')">Become a Customer</button>
-  </section>
-</main>
+<main id="register" class="page"><section class="form-section"><div class="form-card"><h2>Create Your Account</h2><p class="intro">Join AYANET GLOBAL and explore our products.</p><div class="notice">Your account is securely created using AYANET GLOBAL authentication.</div>
+<form onsubmit="registerCustomer(event)"><div class="field"><label>Full Name</label><input id="regName" required placeholder="Your full name"></div><div class="field"><label>Email Address</label><input id="regEmail" type="email" required placeholder="you@example.com"></div><div class="field"><label>Country</label><input id="regCountry" required placeholder="Your country"></div><div class="field"><label>Password</label><input id="regPassword" type="password" minlength="8" required placeholder="Create a password"></div><button class="btn full" type="submit">Create Account</button></form><div id="regMessage" class="success"></div><div class="switch">Already have an account? <button onclick="showPage('login')">Login here</button></div></div></section></main>
 
-<!-- PRODUCTS -->
-<main id="products" class="page">
-  <section class="section">
-    <div class="heading">
-      <h2>Our Software Catalogue</h2>
-      <p>Explore our growing family of digital products.</p>
-    </div>
-    <div class="grid" id="productList"></div>
-  </section>
-</main>
+<main id="login" class="page"><section class="form-section"><div class="form-card"><h2>Customer Login</h2><p class="intro">Access your AYANET GLOBAL account.</p><div class="notice">Sign in securely to access your AYANET GLOBAL account.</div>
+<form onsubmit="loginCustomer(event)"><div class="field"><label>Email Address</label><input id="loginEmail" type="email" required placeholder="you@example.com"></div><div class="field"><label>Password</label><input id="loginPassword" type="password" required placeholder="Your password"></div><button class="btn full" type="submit">Login</button></form><div id="loginMessage" class="success"></div><div class="switch">New to AYANET? <button onclick="showPage('register')">Create an account</button></div></div></section></main>
 
-<!-- REGISTER -->
-<main id="register" class="page">
-  <section class="form-section">
-    <div class="form-card">
-      <h2>Create Your Account</h2>
-      <p class="intro">Join AYANET GLOBAL and explore our products.</p>
-      <div class="notice">
-        Your account is securely created using AYANET GLOBAL authentication.
-      </div>
-      <form onsubmit="registerCustomer(event)">
-        <div class="field">
-          <label>Full Name</label>
-          <input id="regName" required placeholder="Your full name">
-        </div>
-        <div class="field">
-          <label>Email Address</label>
-          <input id="regEmail" type="email" required placeholder="you@example.com">
-        </div>
-        <div class="field">
-          <label>Country</label>
-          <input id="regCountry" required placeholder="Your country">
-        </div>
-        <div class="field">
-          <label>Password</label>
-          <input id="regPassword" type="password" minlength="8" required placeholder="Create a password">
-        </div>
-        <button class="btn full" type="submit">Create Account</button>
-      </form>
-      <div id="regMessage" class="success"></div>
-      <div class="switch">
-        Already have an account?
-        <button onclick="showPage('login')">Login here</button>
-      </div>
-    </div>
-  </section>
-</main>
+<main id="adminLogin" class="page"><section class="form-section"><div class="form-card"><h2>Administrator Login</h2><p class="intro">Secure access for approved AYANET GLOBAL administrators only.</p><div class="notice">Use your registered administrator account. Customer accounts cannot access the Admin Control Centre.</div>
+<form onsubmit="loginAdmin(event)"><div class="field"><label>Administrator Email Address</label><input id="adminLoginEmail" type="email" required autocomplete="username" placeholder="Administrator email"></div><div class="field"><label>Password</label><input id="adminLoginPassword" type="password" required autocomplete="current-password" placeholder="Your password"></div><button class="btn full" type="submit">Sign In to Admin Centre</button></form><div id="adminLoginMessage" class="success"></div><div class="switch">Are you a customer? <button onclick="showPage('login')">Customer Login</button></div></div></section></main>
 
-<!-- LOGIN -->
-<main id="login" class="page">
-  <section class="form-section">
-    <div class="form-card">
-      <h2>Customer Login</h2>
-      <p class="intro">Access your AYANET GLOBAL account.</p>
-      <div class="notice">Sign in securely to access your AYANET GLOBAL account.</div>
-      <form onsubmit="loginCustomer(event)">
-        <div class="field">
-          <label>Email Address</label>
-          <input id="loginEmail" type="email" required placeholder="you@example.com">
-        </div>
-        <div class="field">
-          <label>Password</label>
-          <input id="loginPassword" type="password" required placeholder="Your password">
-        </div>
-        <button class="btn full" type="submit">Login</button>
-      </form>
-      <div id="loginMessage" class="success"></div>
-      <div class="switch">
-        New to AYANET?
-        <button onclick="showPage('register')">Create an account</button>
-      </div>
-    </div>
-  </section>
-</main>
+<main id="demo" class="page"><section class="form-section"><div class="form-card"><h2>Request a Demonstration</h2><p class="intro">Tell us which product you would like to explore.</p><div class="notice">Your request will be sent securely to AYANET GLOBAL.</div>
+<form onsubmit="submitDemo(event)"><div class="field"><label>Your Name</label><input id="demoName" required placeholder="Full name"></div><div class="field"><label>Email Address</label><input id="demoEmail" type="email" required placeholder="you@example.com"></div><div class="field"><label>Country</label><input id="demoCountry" required placeholder="Your country"></div><div class="field"><label>Software Product</label><select id="demoProduct" required><option value="">Choose a product</option></select></div><div class="field"><label>What would you like to know?</label><textarea id="demoDetails" placeholder="Tell us about your needs"></textarea></div><button class="btn full" type="submit">Submit Demo Request</button></form><div id="demoMessage" class="success"></div></div></section></main>
 
-<!-- ADMIN LOGIN -->
-<main id="adminLogin" class="page">
-  <section class="form-section">
-    <div class="form-card">
-      <h2>Administrator Login</h2>
-      <p class="intro">Secure access for approved AYANET GLOBAL administrators only.</p>
-      <div class="notice">Use your registered administrator account. Customer accounts cannot access the Admin Control Centre.</div>
-      <form onsubmit="loginAdmin(event)">
-        <div class="field">
-          <label>Administrator Email Address</label>
-          <input id="adminLoginEmail" type="email" required autocomplete="username" placeholder="Administrator email">
-        </div>
-        <div class="field">
-          <label>Password</label>
-          <input id="adminLoginPassword" type="password" required autocomplete="current-password" placeholder="Your password">
-        </div>
-        <button class="btn full" type="submit">Sign In to Admin Centre</button>
-      </form>
-      <div id="adminLoginMessage" class="success"></div>
-      <div class="switch">
-        Are you a customer?
-        <button onclick="showPage('login')">Customer Login</button>
-      </div>
-    </div>
-  </section>
-</main>
+<main id="dashboard" class="page"><div class="admin-banner"><h1>Customer Dashboard</h1><p>Welcome to your AYANET GLOBAL customer area.</p></div><section class="section"><div class="notice" id="customerWelcome">Your account details are available after you sign in.</div><button class="btn" onclick="logoutCustomer()">Sign Out</button><div class="grid"><div class="stat-card"><strong>—</strong><span>My Products</span></div><div class="stat-card"><strong>—</strong><span>Subscriptions</span></div><div class="stat-card"><strong>—</strong><span>Demo Requests</span></div></div></section></main>
 
-<!-- DEMO REQUEST -->
-<main id="demo" class="page">
-  <section class="form-section">
-    <div class="form-card">
-      <h2>Request a Demonstration</h2>
-      <p class="intro">Tell us which product you would like to explore.</p>
-      <div class="notice">
-        Your request will be sent securely to AYANET GLOBAL.
-      </div>
-      <form onsubmit="submitDemo(event)">
-        <div class="field">
-          <label>Your Name</label>
-          <input id="demoName" required placeholder="Full name">
-        </div>
-        <div class="field">
-          <label>Email Address</label>
-          <input id="demoEmail" type="email" required placeholder="you@example.com">
-        </div>
-        <div class="field">
-          <label>Country</label>
-          <input id="demoCountry" required placeholder="Your country">
-        </div>
-        <div class="field">
-          <label>Software Product</label>
-          <select id="demoProduct" required>
-            <option value="">Choose a product</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>What would you like to know?</label>
-          <textarea id="demoDetails" placeholder="Tell us about your needs"></textarea>
-        </div>
-        <button class="btn full" type="submit">Submit Demo Request</button>
-      </form>
-      <div id="demoMessage" class="success"></div>
-    </div>
-  </section>
-</main>
+<main id="admin" class="page"><div class="admin-banner"><div class="tag">AYANET GLOBAL MANAGEMENT</div><h1>Admin Control Centre</h1><p>Manage your software business from one place.</p></div><section class="admin-section">
+<div class="notice">Secure administrator area. Only approved AYANET GLOBAL administrators can access business records.</div>
+<div class="admin-heading"><h2>Business Overview</h2><button class="btn" onclick="refreshAdmin()">Refresh Dashboard</button></div>
+<div class="grid">
+<div class="stat-card"><strong id="totalProducts">0</strong><span>Software Products</span></div><div class="stat-card"><strong id="totalDemos">0</strong><span>Demo Requests</span></div><div class="stat-card"><strong id="pendingDemos">0</strong><span>Pending Requests</span></div><div class="stat-card"><strong id="completedDemos">0</strong><span>Completed Requests</span></div><div class="stat-card"><strong id="totalCustomers">0</strong><span>Customer Records</span></div><div class="stat-card"><strong id="totalSubscriptions">0</strong><span>Subscriptions</span></div><div class="stat-card"><strong id="activeSubscriptions">0</strong><span>Active Subscriptions</span></div><div class="stat-card"><strong id="totalInvoices">0</strong><span>Invoices</span></div><div class="stat-card"><strong id="totalPayments">0</strong><span>Payment Records</span></div><div class="stat-card"><strong id="dueRenewals">0</strong><span>Renewals Due in 30 Days</span></div>
+</div>
 
-<!-- CUSTOMER DASHBOARD -->
-<main id="dashboard" class="page">
-  <div class="admin-banner">
-    <h1>Customer Dashboard</h1>
-    <p>Welcome to your AYANET GLOBAL customer area.</p>
-  </div>
-  <section class="section">
-    <div class="notice">
-      Your account details are available after you sign in.
-    </div>
-    <button class="btn" onclick="logoutCustomer()">Sign Out</button>
-    <div class="grid">
-      <div class="stat-card"><strong>—</strong><span>My Products</span></div>
-      <div class="stat-card"><strong>—</strong><span>Subscriptions</span></div>
-      <div class="stat-card"><strong>—</strong><span>Demo Requests</span></div>
-    </div>
-  </section>
-</main>
+<div class="admin-panel"><div class="admin-heading"><h3>Demo Request Management</h3><button class="small-btn delete-btn" onclick="clearAllDemos()">Clear All Requests</button></div><div id="demoTable" class="table-wrap"></div><p class="admin-note">Changes are saved to the AYANET GLOBAL database. Deletions cannot be undone.</p></div>
 
-<!-- ADMIN CONTROL CENTRE -->
-<main id="admin" class="page">
-  <div class="admin-banner">
-    <div class="tag">AYANET GLOBAL MANAGEMENT</div>
-    <h1>Admin Control Centre</h1>
-    <p>Manage your software business from one place.</p>
-  </div>
+<div class="admin-panel"><h3>Software Product Management</h3><p class="admin-note" style="margin:0 0 15px">Add a product or select Edit on an existing product.</p>
+<form id="productForm" onsubmit="saveProduct(event)"><div class="product-form-grid"><input id="productName" required maxlength="70" placeholder="Product name"><input id="productIcon" required maxlength="8" placeholder="Icon or emoji (e.g. 🏪)"><select id="productStatus" required><option>IN DEVELOPMENT</option><option>PLANNED</option><option>AVAILABLE</option><option>MAINTENANCE</option></select><textarea id="productDescription" required maxlength="240" placeholder="Short product description"></textarea></div><div class="form-actions"><button class="btn" id="productSaveButton" type="submit">Add Product</button><button class="small-btn edit-btn" id="cancelProductEdit" type="button" onclick="cancelProductEdit()" style="display:none">Cancel Edit</button></div></form><div id="productMessage" class="success"></div><div class="grid" id="adminProductList" style="margin-top:20px"></div><p class="admin-note">Product changes update the public catalogue.</p></div>
 
-  <section class="admin-section">
-    <div class="notice">
-      Secure administrator area. Only approved AYANET GLOBAL administrators can access business records.
-    </div>
+<div class="admin-panel"><h3>Customer Management</h3><p class="admin-note" style="margin:0 0 15px">Manage customer contact records. Passwords are handled only by secure authentication.</p>
+<form id="customerForm" onsubmit="saveCustomer(event)"><div class="product-form-grid"><input id="customerName" required maxlength="80" placeholder="Customer full name"><input id="customerEmail" type="email" required maxlength="120" placeholder="Email address"><input id="customerCountry" required maxlength="80" placeholder="Country"><select id="customerStatus"><option>Prospect</option><option>Active</option><option>Inactive</option></select><input id="customerNotes" maxlength="180" placeholder="Notes (optional)"></div><div class="form-actions"><button class="btn" id="customerSaveButton" type="submit">Add Customer</button><button class="small-btn edit-btn" id="cancelCustomerEdit" type="button" onclick="cancelCustomerEdit()" style="display:none">Cancel Edit</button></div></form><div id="customerMessage" class="success"></div><div id="customerTable" class="table-wrap" style="margin-top:20px"></div></div>
 
-    <div class="admin-heading">
-      <h2>Business Overview</h2>
-      <button class="btn" onclick="refreshAdmin()">Refresh Dashboard</button>
-    </div>
+<div class="admin-panel"><h3>Subscription Management</h3><p class="admin-note" style="margin:0 0 15px">Manage subscription dates and status. Auto-renew is a tracking preference only; this site does not automatically charge customers.</p>
+<form id="subscriptionForm" onsubmit="saveSubscription(event)"><div class="product-form-grid"><select id="subscriptionCustomer" required><option value="">Choose customer</option></select><select id="subscriptionProduct" required><option value="">Choose software product</option></select><select id="subscriptionPlan" required><option value="">Choose billing plan</option><option>Monthly</option><option>Yearly</option></select><input id="subscriptionAmount" type="number" min="0" step="0.01" required placeholder="Subscription amount"><select id="subscriptionCurrency" required><option value="USD">USD ($)</option><option value="KES">KES (KSh)</option><option value="GBP">GBP (£)</option><option value="EUR">EUR (€)</option></select><input id="subscriptionStart" type="date" required aria-label="Start date"><input id="subscriptionEnd" type="date" required aria-label="Expiry date"><select id="subscriptionStatus"><option>Pending</option><option>Active</option><option>Expired</option><option>Cancelled</option></select></div><div class="form-actions"><button class="btn" id="subscriptionSaveButton" type="submit">Add Subscription</button><button class="small-btn edit-btn" id="cancelSubscriptionEdit" type="button" onclick="cancelSubscriptionEdit()" style="display:none">Cancel Edit</button></div></form><div id="subscriptionMessage" class="success"></div><div id="subscriptionTable" class="table-wrap" style="margin-top:20px"></div></div>
 
-    <div class="grid">
-      <div class="stat-card">
-        <strong id="totalProducts">4</strong>
-        <span>Software Products</span>
-      </div>
-      <div class="stat-card">
-        <strong id="totalDemos">0</strong>
-        <span>Demo Requests</span>
-      </div>
-      <div class="stat-card">
-        <strong id="pendingDemos">0</strong>
-        <span>Pending Requests</span>
-      </div>
-      <div class="stat-card">
-        <strong id="completedDemos">0</strong>
-        <span>Completed Requests</span>
-      </div>
-      <div class="stat-card">
-        <strong id="totalCustomers">0</strong>
-        <span>Customer Records</span>
-      </div>
-      <div class="stat-card">
-        <strong id="totalSubscriptions">0</strong>
-        <span>Subscriptions</span>
-      </div>
-      <div class="stat-card">
-        <strong id="activeSubscriptions">0</strong>
-        <span>Active Subscriptions</span>
-      </div>
-    </div>
+<!-- BILLING UPGRADE -->
+<div class="admin-panel" id="billingPanel"><h3>Invoice Management</h3><p class="admin-note" style="margin:0 0 15px">Create invoices for customers. Creating an invoice does not collect payment.</p>
+<form id="invoiceForm" onsubmit="createInvoice(event)"><div class="product-form-grid"><select id="invoiceCustomer" required><option value="">Choose customer</option></select><select id="invoiceSubscription"><option value="">No linked subscription</option></select><input id="invoiceNumber" required maxlength="50" placeholder="Invoice number (e.g. AY-2026-001)"><input id="invoiceAmount" type="number" min="0.01" step="0.01" required placeholder="Invoice amount"><select id="invoiceCurrency" required><option value="KES">KES (KSh)</option><option value="USD">USD ($)</option><option value="GBP">GBP (£)</option><option value="EUR">EUR (€)</option></select><input id="invoiceIssueDate" type="date" required aria-label="Issue date"><input id="invoiceDueDate" type="date" aria-label="Due date"><input id="invoiceDescription" maxlength="180" placeholder="Description (optional)"></div><div class="form-actions"><button class="btn" type="submit">Create Invoice</button></div></form><div id="invoiceMessage" class="success"></div><div id="invoiceTable" class="table-wrap" style="margin-top:20px"></div></div>
 
-    <div class="admin-panel">
-      <div class="admin-heading">
-        <h3>Demo Request Management</h3>
-        <button class="small-btn delete-btn" onclick="clearAllDemos()">
-          Clear All Requests
-        </button>
-      </div>
-      <div id="demoTable" class="table-wrap"></div>
-      <p class="admin-note">
-        Changes are saved to the AYANET GLOBAL database. Deletions cannot be undone.
-      </p>
-    </div>
+<div class="admin-panel"><h3>Record a Payment</h3><div class="notice">Manual record only. This form does not transfer money or connect to M-Pesa, a bank, or a payment gateway. Mark a payment Completed only after you have independently confirmed receipt.</div>
+<form id="paymentForm" onsubmit="recordPayment(event)"><div class="product-form-grid"><select id="paymentInvoice" required><option value="">Choose unpaid invoice</option></select><input id="paymentAmount" type="number" min="0.01" step="0.01" required placeholder="Amount received"><select id="paymentCurrency" required><option value="KES">KES (KSh)</option><option value="USD">USD ($)</option><option value="GBP">GBP (£)</option><option value="EUR">EUR (€)</option></select><select id="paymentMethod"><option value="">Payment method (optional)</option><option>M-Pesa</option><option>Bank transfer</option><option>Cash</option><option>Card (record only)</option><option>Other</option></select><input id="paymentReference" maxlength="100" placeholder="Transaction reference (optional)"><input id="paymentDate" type="datetime-local" required><select id="paymentStatus"><option value="Pending">Pending — not yet confirmed</option><option value="Completed">Completed — received and confirmed</option></select></div><div class="form-actions"><button class="btn" type="submit">Save Payment Record</button></div></form><div id="paymentMessage" class="success"></div><div id="paymentTable" class="table-wrap" style="margin-top:20px"></div></div>
 
-    <div class="admin-panel">
-      <h3>Software Product Management</h3>
-      <p class="admin-note" style="margin:0 0 15px">Add a product or select Edit on an existing product. Changes are saved to the AYANET GLOBAL database.</p>
-      <form id="productForm" onsubmit="saveProduct(event)">
-        <div class="product-form-grid">
-          <input id="productName" required maxlength="70" placeholder="Product name">
-          <input id="productIcon" required maxlength="8" placeholder="Icon or emoji (e.g. 🏪)">
-          <select id="productStatus" required>
-            <option value="IN DEVELOPMENT">IN DEVELOPMENT</option>
-            <option value="PLANNED">PLANNED</option>
-            <option value="AVAILABLE">AVAILABLE</option>
-            <option value="MAINTENANCE">MAINTENANCE</option>
-          </select>
-          <textarea id="productDescription" required maxlength="240" placeholder="Short product description"></textarea>
-        </div>
-        <div class="form-actions">
-          <button class="btn" id="productSaveButton" type="submit">Add Product</button>
-          <button class="small-btn edit-btn" id="cancelProductEdit" type="button" onclick="cancelProductEdit()" style="display:none">Cancel Edit</button>
-        </div>
-      </form>
-      <div id="productMessage" class="success"></div>
-      <div class="grid" id="adminProductList" style="margin-top:20px"></div>
-      <p class="admin-note">Product changes update the public catalogue for all visitors.</p>
-    </div>
+<div class="admin-panel"><h3>Renewal & Expiry Tracking</h3><p class="admin-note" style="margin:0 0 15px">Track subscriptions ending soon and log reminders. Email/SMS reminders are not sent automatically.</p><div id="renewalTable" class="table-wrap"></div><div id="reminderMessage" class="success"></div></div>
 
-    <div class="admin-panel">
-      <h3>Customer Management</h3>
-      <p class="admin-note" style="margin:0 0 15px">Manage customer contact records. Customer passwords are handled only by secure authentication.</p>
-      <form id="customerForm" onsubmit="saveCustomer(event)">
-        <div class="product-form-grid">
-          <input id="customerName" required maxlength="80" placeholder="Customer full name">
-          <input id="customerEmail" type="email" required maxlength="120" placeholder="Email address">
-          <input id="customerCountry" required maxlength="80" placeholder="Country">
-          <select id="customerStatus" required>
-            <option value="Prospect">Prospect</option>
-            <option value="Active">Active</option>
-            <option value="Inactive">Inactive</option>
-          </select>
-          <input id="customerNotes" maxlength="180" placeholder="Notes (optional)">
-        </div>
-        <div class="form-actions">
-          <button class="btn" id="customerSaveButton" type="submit">Add Customer</button>
-          <button class="small-btn edit-btn" id="cancelCustomerEdit" type="button" onclick="cancelCustomerEdit()" style="display:none">Cancel Edit</button>
-        </div>
-      </form>
-      <div id="customerMessage" class="success"></div>
-      <div id="customerTable" class="table-wrap" style="margin-top:20px"></div>
-      <p class="admin-note">Customer contact records are stored securely in the AYANET GLOBAL database.</p>
-    </div>
+<div class="admin-panel"><h3>Revenue Reports</h3><p class="admin-note" style="margin:0 0 15px">Only Completed payment records are counted. Totals are separated by currency and are never combined across currencies.</p><div class="product-form-grid"><select id="reportPeriod" onchange="renderRevenueReport()"><option value="month">This month</option><option value="year">This year</option><option value="all">All time</option></select></div><div id="revenueReport"></div></div>
 
-    <div class="admin-panel">
-      <h3>Subscription Management</h3>
-      <p class="admin-note" style="margin:0 0 15px">Create and manage subscription records. No payments are collected or processed here.</p>
-      <form id="subscriptionForm" onsubmit="saveSubscription(event)">
-        <div class="product-form-grid">
-          <select id="subscriptionCustomer" required><option value="">Choose customer</option></select>
-          <select id="subscriptionProduct" required><option value="">Choose software product</option></select>
-          <select id="subscriptionPlan" required>
-            <option value="">Choose billing plan</option>
-            <option value="Monthly">Monthly</option>
-            <option value="Yearly">Yearly</option>
-          </select>
-          <input id="subscriptionAmount" type="number" min="0" step="0.01" required placeholder="Subscription amount">
-          <select id="subscriptionCurrency" required>
-            <option value="USD">USD ($)</option><option value="KES">KES (KSh)</option><option value="GBP">GBP (£)</option><option value="EUR">EUR (€)</option>
-          </select>
-          <input id="subscriptionStart" type="date" required aria-label="Start date">
-          <input id="subscriptionEnd" type="date" required aria-label="Expiry date">
-          <select id="subscriptionStatus" required>
-            <option value="Pending">Pending</option>
-            <option value="Active">Active</option>
-            <option value="Expired">Expired</option>
-            <option value="Cancelled">Cancelled</option>
-          </select>
-        </div>
-        <div class="form-actions">
-          <button class="btn" id="subscriptionSaveButton" type="submit">Add Subscription</button>
-          <button class="small-btn edit-btn" id="cancelSubscriptionEdit" type="button" onclick="cancelSubscriptionEdit()" style="display:none">Cancel Edit</button>
-        </div>
-      </form>
-      <div id="subscriptionMessage" class="success"></div>
-      <div id="subscriptionTable" class="table-wrap" style="margin-top:20px"></div>
-      <p class="admin-note">Subscription status is managed by an administrator and does not confirm payment. No billing is processed by this website.</p>
-    </div>
-
-    <div class="admin-panel">
-      <h3>Company Settings</h3>
-      <p class="admin-note" style="margin:0 0 15px">Manage the company profile shown on the public website. Changes are saved to the database.</p>
-      <form id="companySettingsForm" onsubmit="saveCompanySettings(event)">
-        <div class="product-form-grid">
-          <input id="companyName" required maxlength="100" placeholder="Company name">
-          <input id="companyBusiness" required maxlength="160" placeholder="Business description">
-          <input id="companyCountry" maxlength="80" placeholder="Base country (optional)">
-          <input id="companyMarket" required maxlength="80" placeholder="Market / region">
-          <input id="companyEmail" type="email" maxlength="120" placeholder="Public contact email (optional)">
-          <input id="companyPhone" type="tel" maxlength="40" placeholder="Public phone number (optional)">
-          <input id="companyWebsite" type="url" maxlength="180" placeholder="Website URL (optional), e.g. https://example.com">
-          <select id="companyCurrency">
-            <option value="USD">Default currency — USD ($)</option>
-            <option value="KES">Default currency — KES (KSh)</option>
-            <option value="GBP">Default currency — GBP (£)</option>
-            <option value="EUR">Default currency — EUR (€)</option>
-          </select>
-        </div>
-        <div class="form-actions">
-          <button class="btn" type="submit">Save Company Settings</button>
-          <button class="small-btn edit-btn" type="button" onclick="resetCompanySettings()">Restore Defaults</button>
-        </div>
-      </form>
-      <div id="companySettingsMessage" class="success"></div>
-      <p class="admin-note">Only the company profile and contact details appear publicly. Administrator access is protected.</p>
-      <p><strong>Platform:</strong> AYANET GLOBAL Customer Portal</p>
-    </div>
-  </section>
-</main>
-
-<footer>
-  © <span id="year"></span> AYANET GLOBAL.
-  Building Solutions Beyond Borders.
-</footer>
+<div class="admin-panel"><h3>Company Settings</h3><p class="admin-note" style="margin:0 0 15px">Manage the company profile shown on the public website.</p>
+<form id="companySettingsForm" onsubmit="saveCompanySettings(event)"><div class="product-form-grid"><input id="companyName" required maxlength="100" placeholder="Company name"><input id="companyBusiness" required maxlength="160" placeholder="Business description"><input id="companyCountry" maxlength="80" placeholder="Base country (optional)"><input id="companyMarket" required maxlength="80" placeholder="Market / region"><input id="companyEmail" type="email" maxlength="120" placeholder="Public contact email (optional)"><input id="companyPhone" type="tel" maxlength="40" placeholder="Public phone number (optional)"><input id="companyWebsite" type="url" maxlength="180" placeholder="Website URL (optional)"><select id="companyCurrency"><option value="USD">Default currency — USD ($)</option><option value="KES">Default currency — KES (KSh)</option><option value="GBP">Default currency — GBP (£)</option><option value="EUR">Default currency — EUR (€)</option></select></div><div class="form-actions"><button class="btn" type="submit">Save Company Settings</button><button class="small-btn edit-btn" type="button" onclick="resetCompanySettings()">Restore Defaults</button></div></form><div id="companySettingsMessage" class="success"></div><p class="admin-note">Only the company profile and contact details appear publicly.</p><p><strong>Platform:</strong> AYANET GLOBAL Customer Portal</p></div>
+</section></main>
+<footer>© <span id="year"></span> AYANET GLOBAL. Building Solutions Beyond Borders.</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script>
-const SUPABASE_URL = "https://jltadhukraspfdaxbvwo.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_tItrrAg_q9xSCskecgc5Jg_bJkxsOiu";
-const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
-let currentUser = null, isAdmin = false;
-let products = [], demos = [], customers = [], subscriptions = [];
-let editingProductId = null, editingCustomerId = null, editingSubscriptionId = null;
-const defaultCompanySettings = {name:"AYANET GLOBAL",business:"Software Development and Digital Solutions",country:"",market:"International",email:"",phone:"",website:"",currency:"USD"};
+const SUPABASE_URL="https://jltadhukraspfdaxbvwo.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY="sb_publishable_tItrrAg_q9xSCskecgc5Jg_bJkxsOiu";
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+let currentUser=null,isAdmin=false,products=[],demos=[],customers=[],subscriptions=[],invoices=[],payments=[],reminders=[];
+let editingProductId=null,editingCustomerId=null,editingSubscriptionId=null;
+const defaultCompanySettings={name:"AYANET GLOBAL",business:"Software Development and Digital Solutions",country:"",market:"International",email:"",phone:"",website:"",currency:"USD"};
+const $=id=>document.getElementById(id);
+const makeId=()=>crypto.randomUUID?crypto.randomUUID():"ag-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,12);
+const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function message(id,text,isError=false){const el=$(id);if(!el)return;el.textContent=text;el.style.display="block";el.style.background=isError?"#ffe5e2":"#e4f6e9";el.style.color=isError?"#a3281e":"#176333";}
+function showPage(page){if(page==="admin"&&!isAdmin){showPage("login");message("loginMessage","Please sign in with the AYANET GLOBAL administrator account.",true);return;}if(page==="dashboard"&&!currentUser){showPage("login");message("loginMessage","Please sign in to view your account.",true);return;}document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));$(page).classList.add("active");closeMenu();window.scrollTo(0,0);if(page==="admin")refreshAdmin();if(page==="dashboard")loadCustomerDashboard();}
+function toggleMenu(){$("nav").classList.toggle("open")}function closeMenu(){$("nav").classList.remove("open")}
+function updateNavigation(){$("adminNavButton").style.display=isAdmin?"inline-block":"none"}
+async function loadProducts(){const {data,error}=await db.from("ayanet_global_products").select("*").order("created_at");if(error)throw error;products=data||[];renderProducts()}
+function renderProducts(){$("productList").innerHTML=products.map(p=>`<div class="card"><div class="product-icon">${esc(p.icon)}</div><h3>${esc(p.name)}</h3><p>${esc(p.description)}</p><span class="status">${esc(p.status)}</span><br><br><button class="btn" onclick="requestDemoById('${esc(p.id)}')">Request Demo</button></div>`).join("")||'<p class="empty">No software products are currently listed.</p>';$("adminProductList").innerHTML=products.map(p=>`<div class="card"><div class="product-icon">${esc(p.icon)}</div><h3>${esc(p.name)}</h3><p>${esc(p.description)}</p><span class="status">${esc(p.status)}</span><br><br><button class="small-btn edit-btn" onclick="editProduct('${esc(p.id)}')">Edit</button> <button class="small-btn delete-btn" onclick="deleteProduct('${esc(p.id)}')">Delete</button></div>`).join("")||'<p class="empty">No products yet. Add your first product above.</p>';$("demoProduct").innerHTML='<option value="">Choose a product</option>'+products.map(p=>`<option value="${esc(p.name)}">${esc(p.name)}</option>`).join("");$("totalProducts").textContent=products.length}
+function requestDemoById(id){const p=products.find(x=>x.id===id);if(p)requestDemo(p.name)}function requestDemo(name){$("demoProduct").value=name;showPage("demo")}
+async function saveProduct(e){e.preventDefault();const row={name:$("productName").value.trim(),icon:$("productIcon").value.trim(),description:$("productDescription").value.trim(),status:$("productStatus").value};const q=editingProductId?db.from("ayanet_global_products").update(row).eq("id",editingProductId):db.from("ayanet_global_products").insert(row);const {error}=await q;if(error){message("productMessage",error.message,true);return}message("productMessage",editingProductId?"Product updated.":"Product added.");cancelProductEdit();await loadProducts()}
+function editProduct(id){const p=products.find(x=>x.id===id);if(!p)return;editingProductId=id;$("productName").value=p.name;$("productIcon").value=p.icon;$("productDescription").value=p.description;$("productStatus").value=p.status;$("productSaveButton").textContent="Save Changes";$("cancelProductEdit").style.display="inline-block"}
+function cancelProductEdit(){editingProductId=null;$("productForm").reset();$("productSaveButton").textContent="Add Product";$("cancelProductEdit").style.display="none"}
+async function deleteProduct(id){const p=products.find(x=>x.id===id);if(!p||!confirm("Delete "+p.name+" from the catalogue?"))return;const {error}=await db.from("ayanet_global_products").delete().eq("id",id);if(error){message("productMessage",error.message,true);return}await loadProducts();await refreshAdmin()}
+async function registerCustomer(e){e.preventDefault();const name=$("regName").value.trim(),email=$("regEmail").value.trim(),country=$("regCountry").value.trim(),password=$("regPassword").value;const {data,error}=await db.auth.signUp({email,password,options:{data:{full_name:name,country}}});if(error){message("regMessage",error.message,true);return}if(data.user&&data.session){const {error:ie}=await db.from("ayanet_global_customers").insert({auth_user_id:data.user.id,name,email,country});if(ie){message("regMessage","Login created, but customer profile could not be saved. Please contact AYANET support.",true);return}}message("regMessage",data.session?"Account created. You can now log in.":"Registration received. Check your email to confirm your account, then log in.");e.target.reset()}
+async function loginCustomer(e){e.preventDefault();const {data,error}=await db.auth.signInWithPassword({email:$("loginEmail").value.trim(),password:$("loginPassword").value});if(error){message("loginMessage",error.message,true);return}currentUser=data.user;await checkAdmin();if(isAdmin){await db.auth.signOut();currentUser=null;isAdmin=false;updateNavigation();message("loginMessage","This is an administrator account. Please use Admin Login.",true);return}await ensureCustomerProfile();updateNavigation();message("loginMessage","You are signed in successfully.");setTimeout(()=>showPage("dashboard"),500)}
+async function loginAdmin(e){e.preventDefault();const {data,error}=await db.auth.signInWithPassword({email:$("adminLoginEmail").value.trim(),password:$("adminLoginPassword").value});if(error){message("adminLoginMessage",error.message,true);return}currentUser=data.user;await checkAdmin();if(!isAdmin){await db.auth.signOut();currentUser=null;updateNavigation();message("adminLoginMessage","Access denied. This account is not registered as an AYANET GLOBAL administrator.",true);return}updateNavigation();message("adminLoginMessage","Administrator signed in successfully.");setTimeout(()=>showPage("admin"),500)}
+async function ensureCustomerProfile(){if(!currentUser)return;const {data}=await db.from("ayanet_global_customers").select("id").eq("auth_user_id",currentUser.id).maybeSingle();if(!data){const m=currentUser.user_metadata||{};await db.from("ayanet_global_customers").insert({auth_user_id:currentUser.id,name:m.full_name||currentUser.email,email:currentUser.email,country:m.country||"Not provided"})}}
+async function checkAdmin(){if(!currentUser){isAdmin=false;return}const {data,error}=await db.rpc("ayanet_global_is_admin");isAdmin=!error&&data===true}
+async function logoutCustomer(){await db.auth.signOut();currentUser=null;isAdmin=false;updateNavigation();showPage("home")}
+async function submitDemo(e){e.preventDefault();const row={name:$("demoName").value.trim(),email:$("demoEmail").value.trim(),country:$("demoCountry").value.trim(),product:$("demoProduct").value,details:$("demoDetails").value.trim()};const {error}=await db.from("ayanet_global_demo_requests").insert(row);if(error){message("demoMessage",error.message,true);return}message("demoMessage","Thank you. Your demo request has been sent.");e.target.reset();if(isAdmin)await refreshAdmin()}
 
-function escapeHTML(value){return String(value ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
-function message(id,text,isError=false){const el=document.getElementById(id);if(!el)return;el.textContent=text;el.style.display="block";el.style.background=isError?"#ffe5e2":"#e4f6e9";el.style.color=isError?"#a3281e":"#176333";}
-function showPage(page){
-  if(page==="admin"&&!isAdmin){showPage("login");message("loginMessage","Please sign in with the AYANET GLOBAL administrator account.",true);return;}
-  if(page==="dashboard"&&!currentUser){showPage("login");message("loginMessage","Please sign in to view your account.",true);return;}
-  document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById(page).classList.add("active");closeMenu();window.scrollTo(0,0);
-  if(page==="admin")refreshAdmin();if(page==="dashboard")loadCustomerDashboard();
+async function loadAdminData(){
+ const names=["ayanet_global_demo_requests","ayanet_global_customers","ayanet_global_subscriptions","ayanet_global_invoices","ayanet_global_payments","ayanet_global_renewal_reminders"];
+ const queries=[
+ db.from(names[0]).select("*").order("created_at",{ascending:false}),
+ db.from(names[1]).select("*").order("created_at",{ascending:false}),
+ db.from(names[2]).select("*,ayanet_global_customers(name,email),ayanet_global_products(name)").order("created_at",{ascending:false}),
+ db.from(names[3]).select("*,ayanet_global_customers(name,email)").order("created_at",{ascending:false}),
+ db.from(names[4]).select("*,ayanet_global_invoices(invoice_number)").order("payment_date",{ascending:false}),
+ db.from(names[5]).select("*").order("scheduled_date",{ascending:true})
+ ];
+ const r=await Promise.all(queries);for(let i=0;i<r.length;i++)if(r[i].error)throw new Error(names[i]+": "+r[i].error.message);
+ [demos,customers,subscriptions,invoices,payments,reminders]=r.map(x=>x.data||[]);
 }
-function toggleMenu(){document.getElementById("nav").classList.toggle("open");}function closeMenu(){document.getElementById("nav").classList.remove("open");}
-function updateNavigation(){const adminBtn=[...document.querySelectorAll('#nav button')].find(b=>b.textContent.trim()==="Admin Centre");if(adminBtn)adminBtn.style.display=isAdmin?"inline-block":"none";}
-async function loadProducts(){const {data,error}=await db.from("ayanet_global_products").select("*").order("created_at");if(error)throw error;products=data||[];renderProducts();}
-function renderProducts(){
- document.getElementById("productList").innerHTML=products.map(p=>`<div class="card"><div class="product-icon">${escapeHTML(p.icon)}</div><h3>${escapeHTML(p.name)}</h3><p>${escapeHTML(p.description)}</p><span class="status">${escapeHTML(p.status)}</span><br><br><button class="btn" onclick="requestDemoById('${escapeHTML(p.id)}')">Request Demo</button></div>`).join("")||'<p class="empty">No software products are currently listed.</p>';
- document.getElementById("adminProductList").innerHTML=products.map(p=>`<div class="card"><div class="product-icon">${escapeHTML(p.icon)}</div><h3>${escapeHTML(p.name)}</h3><p>${escapeHTML(p.description)}</p><span class="status">${escapeHTML(p.status)}</span><br><br><div class="form-actions"><button class="small-btn edit-btn" onclick="editProduct('${p.id}')">Edit</button><button class="small-btn delete-btn" onclick="deleteProduct('${p.id}')">Delete</button></div></div>`).join("")||'<p class="empty">No products yet. Add your first product above.</p>';
- document.getElementById("demoProduct").innerHTML='<option value="">Choose a product</option>'+products.map(p=>`<option value="${escapeHTML(p.name)}">${escapeHTML(p.name)}</option>`).join("");document.getElementById("totalProducts").textContent=products.length;
-}
-function requestDemoById(id){const p=products.find(x=>x.id===id);if(p)requestDemo(p.name);}function requestDemo(name){document.getElementById("demoProduct").value=name;showPage("demo");}
-async function saveProduct(event){event.preventDefault();const name=productName.value.trim(),icon=productIcon.value.trim(),description=productDescription.value.trim(),status=productStatus.value;if(!name||!icon||!description)return;let result;if(editingProductId)result=await db.from("ayanet_global_products").update({name,icon,description,status}).eq("id",editingProductId);else result=await db.from("ayanet_global_products").insert({name,icon,description,status});if(result.error){message("productMessage",result.error.message,true);return;}message("productMessage",editingProductId?"Product updated successfully.":"Product added successfully.");cancelProductEdit();await loadProducts();}
-function editProduct(id){const p=products.find(x=>x.id===id);if(!p)return;editingProductId=id;productName.value=p.name;productIcon.value=p.icon;productDescription.value=p.description;productStatus.value=p.status;productSaveButton.textContent="Save Changes";cancelProductEditButton();}
-function cancelProductEditButton(){document.getElementById("cancelProductEdit").style.display="inline-block";document.getElementById("productForm").scrollIntoView({behavior:"smooth",block:"center"});}
-function cancelProductEdit(){editingProductId=null;document.getElementById("productForm").reset();productSaveButton.textContent="Add Product";document.getElementById("cancelProductEdit").style.display="none";}
-async function deleteProduct(id){const p=products.find(x=>x.id===id);if(!p||!confirm("Delete "+p.name+" from the catalogue?"))return;const {error}=await db.from("ayanet_global_products").delete().eq("id",id);if(error){message("productMessage",error.message,true);return;}await loadProducts();refreshAdmin();message("productMessage","Product deleted.");}
-async function registerCustomer(event){event.preventDefault();const name=regName.value.trim(),email=regEmail.value.trim(),country=regCountry.value.trim(),password=regPassword.value;const {data,error}=await db.auth.signUp({email,password,options:{data:{full_name:name,country}}});if(error){message("regMessage",error.message,true);return;}if(data.user&&data.session){const {error:insertError}=await db.from("ayanet_global_customers").insert({auth_user_id:data.user.id,name,email,country});if(insertError){message("regMessage","Your login was created, but your customer profile could not be saved. Please contact AYANET support.",true);return;}}message("regMessage",data.session?"Account created successfully. You can now log in.":"Registration received. Please check your email to confirm your account, then log in.");event.target.reset();}
-async function loginCustomer(event){
-  event.preventDefault();
-  const {data,error}=await db.auth.signInWithPassword({
-    email:loginEmail.value.trim(),
-    password:loginPassword.value
-  });
-  if(error){message("loginMessage",error.message,true);return;}
-  currentUser=data.user;
-  await checkAdmin();
-  if(isAdmin){
-    await db.auth.signOut();
-    currentUser=null;
-    isAdmin=false;
-    updateNavigation();
-    message("loginMessage","This is an administrator account. Please use Admin Login.",true);
-    return;
-  }
-  await ensureCustomerProfile();
-  updateNavigation();
-  message("loginMessage","You are signed in successfully.");
-  setTimeout(()=>showPage("dashboard"),500);
-}
+async function refreshAdmin(){if(!isAdmin)return;try{await loadAdminData();renderCustomers();renderSubscriptions();renderDemos();renderBilling();renderRenewals();renderRevenueReport();$("totalDemos").textContent=demos.length;$("pendingDemos").textContent=demos.filter(x=>x.status==="Pending").length;$("completedDemos").textContent=demos.filter(x=>x.status==="Completed").length;$("totalInvoices").textContent=invoices.length;$("totalPayments").textContent=payments.length;const today=new Date();const edge=new Date();edge.setDate(today.getDate()+30);$("dueRenewals").textContent=subscriptions.filter(s=>s.end_date>=today.toISOString().slice(0,10)&&s.end_date<=edge.toISOString().slice(0,10)&&!["Cancelled","Expired"].includes(s.status)).length}catch(e){message("productMessage","Could not load administrator data: "+e.message,true)}}
+function renderDemos(){const el=$("demoTable");if(!demos.length){el.innerHTML='<p class="empty">No demonstration requests yet.</p>';return}el.innerHTML=`<table><thead><tr><th>Customer</th><th>Contact</th><th>Country</th><th>Product</th><th>Date</th><th>Status</th><th>Action</th></tr></thead><tbody>${demos.map(d=>`<tr><td><strong>${esc(d.name)}</strong><br><small>${esc(d.details||"")}</small></td><td>${esc(d.email)}</td><td>${esc(d.country)}</td><td>${esc(d.product)}</td><td>${new Date(d.created_at).toLocaleString()}</td><td><select onchange="updateDemoStatus('${esc(d.id)}',this.value)">${["Pending","Contacted","Completed"].map(v=>`<option ${d.status===v?"selected":""}>${v}</option>`).join("")}</select></td><td><button class="small-btn delete-btn" onclick="deleteDemo('${esc(d.id)}')">Delete</button></td></tr>`).join("")}</tbody></table>`}
+async function updateDemoStatus(id,status){const {error}=await db.from("ayanet_global_demo_requests").update({status}).eq("id",id);if(error)alert(error.message);await refreshAdmin()}
+async function deleteDemo(id){if(!confirm("Delete this demonstration request?"))return;const {error}=await db.from("ayanet_global_demo_requests").delete().eq("id",id);if(error){alert(error.message);return}await refreshAdmin()}
+async function clearAllDemos(){if(!confirm("Delete ALL demonstration requests? This cannot be undone."))return;const {error}=await db.from("ayanet_global_demo_requests").delete().neq("id","");if(error){alert(error.message);return}await refreshAdmin()}
+async function saveCustomer(e){e.preventDefault();const row={name:$("customerName").value.trim(),email:$("customerEmail").value.trim(),country:$("customerCountry").value.trim(),status:$("customerStatus").value,notes:$("customerNotes").value.trim()};const q=editingCustomerId?db.from("ayanet_global_customers").update(row).eq("id",editingCustomerId):db.from("ayanet_global_customers").insert(row);const {error}=await q;if(error){message("customerMessage",error.message,true);return}message("customerMessage",editingCustomerId?"Customer updated.":"Customer added.");cancelCustomerEdit();await refreshAdmin()}
+function editCustomer(id){const c=customers.find(x=>x.id===id);if(!c)return;editingCustomerId=id;$("customerName").value=c.name;$("customerEmail").value=c.email;$("customerCountry").value=c.country;$("customerStatus").value=c.status;$("customerNotes").value=c.notes||"";$("customerSaveButton").textContent="Save Changes";$("cancelCustomerEdit").style.display="inline-block"}
+function cancelCustomerEdit(){editingCustomerId=null;$("customerForm").reset();$("customerSaveButton").textContent="Add Customer";$("cancelCustomerEdit").style.display="none"}
+async function deleteCustomer(id){if(!confirm("Delete this customer record?"))return;const {error}=await db.from("ayanet_global_customers").delete().eq("id",id);if(error){alert(error.message);return}await refreshAdmin()}
+async function updateCustomerStatus(id,status){const {error}=await db.from("ayanet_global_customers").update({status}).eq("id",id);if(error)alert(error.message);await refreshAdmin()}
+function renderCustomers(){$("totalCustomers").textContent=customers.length;const el=$("customerTable");if(!customers.length){el.innerHTML='<p class="empty">No customer records yet.</p>';return}el.innerHTML=`<table><thead><tr><th>Customer</th><th>Email</th><th>Country</th><th>Status</th><th>Notes</th><th>Actions</th></tr></thead><tbody>${customers.map(c=>`<tr><td><strong>${esc(c.name)}</strong></td><td>${esc(c.email)}</td><td>${esc(c.country)}</td><td><select onchange="updateCustomerStatus('${esc(c.id)}',this.value)">${["Prospect","Active","Inactive"].map(v=>`<option ${c.status===v?"selected":""}>${v}</option>`).join("")}</select></td><td>${esc(c.notes||"—")}</td><td><button class="small-btn edit-btn" onclick="editCustomer('${esc(c.id)}')">Edit</button> <button class="small-btn delete-btn" onclick="deleteCustomer('${esc(c.id)}')">Delete</button></td></tr>`).join("")}</tbody></table>`}
+function populateSubscriptionOptions(){$("subscriptionCustomer").innerHTML='<option value="">Choose customer</option>'+customers.map(c=>`<option value="${esc(c.id)}">${esc(c.name)} — ${esc(c.email)}</option>`).join("");$("subscriptionProduct").innerHTML='<option value="">Choose software product</option>'+products.map(p=>`<option value="${esc(p.id)}">${esc(p.name)}</option>`).join("")}
+async function saveSubscription(e){e.preventDefault();const row={customer_id:$("subscriptionCustomer").value,product_id:$("subscriptionProduct").value,plan:$("subscriptionPlan").value,amount:Number($("subscriptionAmount").value),currency:$("subscriptionCurrency").value,start_date:$("subscriptionStart").value,end_date:$("subscriptionEnd").value,status:$("subscriptionStatus").value};if(row.end_date<row.start_date){message("subscriptionMessage","Expiry date cannot be earlier than start date.",true);return}const q=editingSubscriptionId?db.from("ayanet_global_subscriptions").update(row).eq("id",editingSubscriptionId):db.from("ayanet_global_subscriptions").insert(row);const {error}=await q;if(error){message("subscriptionMessage",error.message,true);return}message("subscriptionMessage",editingSubscriptionId?"Subscription updated.":"Subscription added.");cancelSubscriptionEdit();await refreshAdmin()}
+function editSubscription(id){const x=subscriptions.find(s=>s.id===id);if(!x)return;editingSubscriptionId=id;populateSubscriptionOptions();$("subscriptionCustomer").value=x.customer_id;$("subscriptionProduct").value=x.product_id;$("subscriptionPlan").value=x.plan;$("subscriptionAmount").value=x.amount;$("subscriptionCurrency").value=x.currency;$("subscriptionStart").value=x.start_date;$("subscriptionEnd").value=x.end_date;$("subscriptionStatus").value=x.status;$("subscriptionSaveButton").textContent="Save Changes";$("cancelSubscriptionEdit").style.display="inline-block"}
+function cancelSubscriptionEdit(){editingSubscriptionId=null;$("subscriptionForm").reset();$("subscriptionSaveButton").textContent="Add Subscription";$("cancelSubscriptionEdit").style.display="none"}
+async function deleteSubscription(id){if(!confirm("Delete this subscription record?"))return;const {error}=await db.from("ayanet_global_subscriptions").delete().eq("id",id);if(error){alert(error.message);return}await refreshAdmin()}
+async function updateSubscriptionStatus(id,status){const {error}=await db.from("ayanet_global_subscriptions").update({status}).eq("id",id);if(error)alert(error.message);await refreshAdmin()}
+function renderSubscriptions(){$("totalSubscriptions").textContent=subscriptions.length;$("activeSubscriptions").textContent=subscriptions.filter(s=>s.status==="Active").length;populateSubscriptionOptions();const el=$("subscriptionTable");if(!subscriptions.length){el.innerHTML='<p class="empty">No subscriptions yet. Add a customer first.</p>';return}el.innerHTML=`<table><thead><tr><th>Customer</th><th>Product</th><th>Plan</th><th>Amount</th><th>Start</th><th>Expiry</th><th>Status</th><th>Actions</th></tr></thead><tbody>${subscriptions.map(x=>`<tr><td>${esc(x.ayanet_global_customers?.name||"Customer")}</td><td>${esc(x.ayanet_global_products?.name||"Product")}</td><td>${esc(x.plan)}</td><td>${esc(x.currency)} ${Number(x.amount).toFixed(2)}</td><td>${esc(x.start_date)}</td><td>${esc(x.end_date)}</td><td><select onchange="updateSubscriptionStatus('${esc(x.id)}',this.value)">${["Pending","Active","Expired","Cancelled"].map(v=>`<option ${x.status===v?"selected":""}>${v}</option>`).join("")}</select></td><td><button class="small-btn edit-btn" onclick="editSubscription('${esc(x.id)}')">Edit</button> <button class="small-btn delete-btn" onclick="deleteSubscription('${esc(x.id)}')">Delete</button></td></tr>`).join("")}</tbody></table>`}
 
-async function loginAdmin(event){
-  event.preventDefault();
-  const {data,error}=await db.auth.signInWithPassword({
-    email:adminLoginEmail.value.trim(),
-    password:adminLoginPassword.value
-  });
-  if(error){message("adminLoginMessage",error.message,true);return;}
-  currentUser=data.user;
-  await checkAdmin();
-  if(!isAdmin){
-    await db.auth.signOut();
-    currentUser=null;
-    isAdmin=false;
-    updateNavigation();
-    message("adminLoginMessage","Access denied. This account is not registered as an AYANET GLOBAL administrator.",true);
-    return;
-  }
-  updateNavigation();
-  message("adminLoginMessage","Administrator signed in successfully.");
-  setTimeout(()=>showPage("admin"),500);
+function renderBilling(){
+ $("invoiceCustomer").innerHTML='<option value="">Choose customer</option>'+customers.map(c=>`<option value="${esc(c.id)}">${esc(c.name)} — ${esc(c.email)}</option>`).join("");
+ $("invoiceSubscription").innerHTML='<option value="">No linked subscription</option>'+subscriptions.map(s=>`<option value="${esc(s.id)}">${esc(s.ayanet_global_customers?.name||"Customer")} — ${esc(s.plan)} — ${esc(s.currency)} ${Number(s.amount).toFixed(2)}</option>`).join("");
+ $("paymentInvoice").innerHTML='<option value="">Choose invoice</option>'+invoices.filter(i=>i.status!=="Paid").map(i=>`<option value="${esc(i.id)}">${esc(i.invoice_number)} — ${esc(i.currency)} ${Number(i.amount).toFixed(2)} — ${esc(i.status)}</option>`).join("");
+ $("invoiceTable").innerHTML=invoices.length?`<table><thead><tr><th>Invoice</th><th>Customer</th><th>Amount</th><th>Issued</th><th>Due</th><th>Status</th></tr></thead><tbody>${invoices.map(i=>`<tr><td>${esc(i.invoice_number)}</td><td>${esc(i.ayanet_global_customers?.name||"Customer")}</td><td>${esc(i.currency)} ${Number(i.amount).toFixed(2)}</td><td>${esc(i.issue_date)}</td><td>${esc(i.due_date||"—")}</td><td>${esc(i.status)}</td></tr>`).join("")}</tbody></table>`:'<p class="empty">No invoices created yet.</p>';
+ $("paymentTable").innerHTML=payments.length?`<table><thead><tr><th>Date</th><th>Invoice</th><th>Amount</th><th>Method</th><th>Reference</th><th>Status</th></tr></thead><tbody>${payments.map(p=>`<tr><td>${new Date(p.payment_date).toLocaleString()}</td><td>${esc(p.ayanet_global_invoices?.invoice_number||p.invoice_id)}</td><td>${esc(p.currency)} ${Number(p.amount).toFixed(2)}</td><td>${esc(p.payment_method||"—")}</td><td>${esc(p.transaction_reference||"—")}</td><td>${esc(p.status)}</td></tr>`).join("")}</tbody></table>`:'<p class="empty">No payment records yet.</p>';
 }
-async function ensureCustomerProfile(){if(!currentUser)return;const {data}=await db.from("ayanet_global_customers").select("id").eq("auth_user_id",currentUser.id).maybeSingle();if(!data){const meta=currentUser.user_metadata||{};await db.from("ayanet_global_customers").insert({auth_user_id:currentUser.id,name:meta.full_name||currentUser.email,email:currentUser.email,country:meta.country||"Not provided"});}}
-async function checkAdmin(){if(!currentUser){isAdmin=false;return;}const {data,error}=await db.rpc("ayanet_global_is_admin");isAdmin=!error&&data===true;}
-async function logoutCustomer(){await db.auth.signOut();currentUser=null;isAdmin=false;updateNavigation();showPage("home");}
-async function submitDemo(event){event.preventDefault();const row={name:demoName.value.trim(),email:demoEmail.value.trim(),country:demoCountry.value.trim(),product:demoProduct.value,details:demoDetails.value.trim()};const {error}=await db.from("ayanet_global_demo_requests").insert(row);if(error){message("demoMessage",error.message,true);return;}message("demoMessage","Thank you. Your demo request has been sent to AYANET GLOBAL.");event.target.reset();if(isAdmin)await refreshAdmin();}
-async function loadAdminData(){const results=await Promise.all([db.from("ayanet_global_demo_requests").select("*").order("created_at",{ascending:false}),db.from("ayanet_global_customers").select("*").order("created_at",{ascending:false}),db.from("ayanet_global_subscriptions").select("*,ayanet_global_customers(name,email),ayanet_global_products(name)").order("created_at",{ascending:false})]);for(const r of results)if(r.error)throw r.error;demos=results[0].data||[];customers=results[1].data||[];subscriptions=results[2].data||[];}
-async function refreshAdmin(){if(!isAdmin)return;try{await loadAdminData();renderCustomers();renderSubscriptions();document.getElementById("totalDemos").textContent=demos.length;document.getElementById("pendingDemos").textContent=demos.filter(x=>x.status==="Pending").length;document.getElementById("completedDemos").textContent=demos.filter(x=>x.status==="Completed").length;renderDemos();}catch(e){message("productMessage","Could not load administrator data: "+e.message,true);}}
-function renderDemos(){const el=document.getElementById("demoTable");if(!demos.length){el.innerHTML='<p class="empty">No demonstration requests yet.</p>';return;}el.innerHTML=`<table><thead><tr><th>Customer</th><th>Contact</th><th>Country</th><th>Product</th><th>Date</th><th>Status</th><th>Action</th></tr></thead><tbody>${demos.map(d=>`<tr><td><strong>${escapeHTML(d.name)}</strong><br><small>${escapeHTML(d.details||"")}</small></td><td>${escapeHTML(d.email)}</td><td>${escapeHTML(d.country)}</td><td>${escapeHTML(d.product)}</td><td>${new Date(d.created_at).toLocaleString()}</td><td><select onchange="updateDemoStatus('${d.id}',this.value)">${["Pending","Contacted","Completed"].map(v=>`<option ${d.status===v?"selected":""}>${v}</option>`).join("")}</select></td><td><button class="small-btn delete-btn" onclick="deleteDemo('${d.id}')">Delete</button></td></tr>`).join("")}</tbody></table>`;}
-async function updateDemoStatus(id,status){const {error}=await db.from("ayanet_global_demo_requests").update({status}).eq("id",id);if(error)alert(error.message);await refreshAdmin();}
-async function deleteDemo(id){if(!confirm("Delete this demonstration request?"))return;const {error}=await db.from("ayanet_global_demo_requests").delete().eq("id",id);if(error){alert(error.message);return;}await refreshAdmin();}
-async function clearAllDemos(){if(!confirm("Delete ALL demonstration requests? This cannot be undone."))return;const {error}=await db.from("ayanet_global_demo_requests").delete().neq("id","");if(error){alert(error.message);return;}await refreshAdmin();}
-async function saveCustomer(event){event.preventDefault();const row={name:customerName.value.trim(),email:customerEmail.value.trim(),country:customerCountry.value.trim(),status:customerStatus.value,notes:customerNotes.value.trim()};const result=editingCustomerId?await db.from("ayanet_global_customers").update(row).eq("id",editingCustomerId):await db.from("ayanet_global_customers").insert(row);if(result.error){message("customerMessage",result.error.message,true);return;}message("customerMessage",editingCustomerId?"Customer updated.":"Customer added.");cancelCustomerEdit();await refreshAdmin();}
-function editCustomer(id){const c=customers.find(x=>x.id===id);if(!c)return;editingCustomerId=id;customerName.value=c.name;customerEmail.value=c.email;customerCountry.value=c.country;customerStatus.value=c.status;customerNotes.value=c.notes||"";customerSaveButton.textContent="Save Changes";cancelCustomerEditButton2();}
-function cancelCustomerEditButton2(){document.getElementById("cancelCustomerEdit").style.display="inline-block";document.getElementById("customerForm").scrollIntoView({behavior:"smooth",block:"center"});}
-function cancelCustomerEdit(){editingCustomerId=null;document.getElementById("customerForm").reset();customerSaveButton.textContent="Add Customer";document.getElementById("cancelCustomerEdit").style.display="none";}
-async function deleteCustomer(id){if(!confirm("Delete this customer record?"))return;const {error}=await db.from("ayanet_global_customers").delete().eq("id",id);if(error){alert(error.message);return;}await refreshAdmin();}
-async function updateCustomerStatus(id,status){const {error}=await db.from("ayanet_global_customers").update({status}).eq("id",id);if(error)alert(error.message);await refreshAdmin();}
-function renderCustomers(){document.getElementById("totalCustomers").textContent=customers.length;const el=document.getElementById("customerTable");if(!customers.length){el.innerHTML='<p class="empty">No customer records yet.</p>';return;}el.innerHTML=`<table><thead><tr><th>Customer</th><th>Email</th><th>Country</th><th>Status</th><th>Notes</th><th>Actions</th></tr></thead><tbody>${customers.map(c=>`<tr><td><strong>${escapeHTML(c.name)}</strong></td><td>${escapeHTML(c.email)}</td><td>${escapeHTML(c.country)}</td><td><select onchange="updateCustomerStatus('${c.id}',this.value)">${["Prospect","Active","Inactive"].map(v=>`<option ${c.status===v?"selected":""}>${v}</option>`).join("")}</select></td><td>${escapeHTML(c.notes||"—")}</td><td><button class="small-btn edit-btn" onclick="editCustomer('${c.id}')">Edit</button> <button class="small-btn delete-btn" onclick="deleteCustomer('${c.id}')">Delete</button></td></tr>`).join("")}</tbody></table>`;}
-function populateSubscriptionOptions(){subscriptionCustomer.innerHTML='<option value="">Choose customer</option>'+customers.map(c=>`<option value="${c.id}">${escapeHTML(c.name)} — ${escapeHTML(c.email)}</option>`).join("");subscriptionProduct.innerHTML='<option value="">Choose software product</option>'+products.map(p=>`<option value="${p.id}">${escapeHTML(p.name)}</option>`).join("");}
-async function saveSubscription(event){event.preventDefault();const row={customer_id:subscriptionCustomer.value,product_id:subscriptionProduct.value,plan:subscriptionPlan.value,amount:Number(subscriptionAmount.value),currency:subscriptionCurrency.value,start_date:subscriptionStart.value,end_date:subscriptionEnd.value,status:subscriptionStatus.value};if(row.end_date<row.start_date){message("subscriptionMessage","Expiry date cannot be earlier than start date.",true);return;}const result=editingSubscriptionId?await db.from("ayanet_global_subscriptions").update(row).eq("id",editingSubscriptionId):await db.from("ayanet_global_subscriptions").insert(row);if(result.error){message("subscriptionMessage",result.error.message,true);return;}message("subscriptionMessage",editingSubscriptionId?"Subscription updated.":"Subscription added.");cancelSubscriptionEdit();await refreshAdmin();}
-function editSubscription(id){const x=subscriptions.find(s=>s.id===id);if(!x)return;editingSubscriptionId=id;populateSubscriptionOptions();subscriptionCustomer.value=x.customer_id;subscriptionProduct.value=x.product_id;subscriptionPlan.value=x.plan;subscriptionAmount.value=x.amount;subscriptionCurrency.value=x.currency;subscriptionStart.value=x.start_date;subscriptionEnd.value=x.end_date;subscriptionStatus.value=x.status;subscriptionSaveButton.textContent="Save Changes";document.getElementById("cancelSubscriptionEdit").style.display="inline-block";}
-function cancelSubscriptionEdit(){editingSubscriptionId=null;document.getElementById("subscriptionForm").reset();subscriptionSaveButton.textContent="Add Subscription";document.getElementById("cancelSubscriptionEdit").style.display="none";}
-async function deleteSubscription(id){if(!confirm("Delete this subscription record?"))return;const {error}=await db.from("ayanet_global_subscriptions").delete().eq("id",id);if(error){alert(error.message);return;}await refreshAdmin();}
-async function updateSubscriptionStatus(id,status){const {error}=await db.from("ayanet_global_subscriptions").update({status}).eq("id",id);if(error)alert(error.message);await refreshAdmin();}
-function renderSubscriptions(){document.getElementById("totalSubscriptions").textContent=subscriptions.length;document.getElementById("activeSubscriptions").textContent=subscriptions.filter(s=>s.status==="Active").length;populateSubscriptionOptions();const el=document.getElementById("subscriptionTable");if(!subscriptions.length){el.innerHTML='<p class="empty">No subscriptions yet. Add a customer first.</p>';return;}el.innerHTML=`<table><thead><tr><th>Customer</th><th>Product</th><th>Plan</th><th>Amount</th><th>Start</th><th>Expiry</th><th>Status</th><th>Actions</th></tr></thead><tbody>${subscriptions.map(x=>`<tr><td>${escapeHTML(x.ayanet_global_customers?.name||"Customer")}</td><td>${escapeHTML(x.ayanet_global_products?.name||"Product")}</td><td>${escapeHTML(x.plan)}</td><td>${escapeHTML(x.currency)} ${Number(x.amount).toFixed(2)}</td><td>${escapeHTML(x.start_date)}</td><td>${escapeHTML(x.end_date)}</td><td><select onchange="updateSubscriptionStatus('${x.id}',this.value)">${["Pending","Active","Expired","Cancelled"].map(v=>`<option ${x.status===v?"selected":""}>${v}</option>`).join("")}</select></td><td><button class="small-btn edit-btn" onclick="editSubscription('${x.id}')">Edit</button> <button class="small-btn delete-btn" onclick="deleteSubscription('${x.id}')">Delete</button></td></tr>`).join("")}</tbody></table>`;}
-async function loadCompanySettings(){const {data,error}=await db.from("ayanet_global_company_settings").select("*").eq("id","main").maybeSingle();if(error)throw error;const s=data?{name:data.name,business:data.business,country:data.country||"",market:data.market,email:data.email||"",phone:data.phone||"",website:data.website||"",currency:data.currency}:defaultCompanySettings;companyName.value=s.name;companyBusiness.value=s.business;companyCountry.value=s.country;companyMarket.value=s.market;companyEmail.value=s.email;companyPhone.value=s.phone;companyWebsite.value=s.website;companyCurrency.value=s.currency;renderPublicCompanyProfile(s);}
-function renderPublicCompanyProfile(s){s=s||defaultCompanySettings;publicCompanyName.textContent="Welcome to "+s.name;publicBusinessDescription.textContent=s.business;publicCompanyLocation.textContent=[s.country,s.market].filter(Boolean).join(" • ");const a=[];if(s.email)a.push("Email: "+s.email);if(s.phone)a.push("Phone: "+s.phone);if(s.website)a.push("Website: "+s.website);publicCompanyContact.textContent=a.join(" | ");}
-async function saveCompanySettings(event){event.preventDefault();const row={id:"main",name:companyName.value.trim(),business:companyBusiness.value.trim(),country:companyCountry.value.trim(),market:companyMarket.value.trim(),email:companyEmail.value.trim(),phone:companyPhone.value.trim(),website:companyWebsite.value.trim(),currency:companyCurrency.value};if(row.website&&!/^https?:\/\//i.test(row.website)){message("companySettingsMessage","Enter a website beginning with https:// or http://.",true);return;}const {error}=await db.from("ayanet_global_company_settings").upsert(row,{onConflict:"id"});if(error){message("companySettingsMessage",error.message,true);return;}renderPublicCompanyProfile(row);message("companySettingsMessage","Company settings saved to AYANET GLOBAL.");}
-async function resetCompanySettings(){if(!confirm("Restore default company settings?"))return;const {error}=await db.from("ayanet_global_company_settings").upsert({id:"main",...defaultCompanySettings},{onConflict:"id"});if(error){message("companySettingsMessage",error.message,true);return;}await loadCompanySettings();message("companySettingsMessage","Default settings restored.");}
-async function loadCustomerDashboard(){if(!currentUser)return;const {data,error}=await db.from("ayanet_global_customers").select("*").eq("auth_user_id",currentUser.id).maybeSingle();if(error){console.error(error);return;}const section=document.querySelector("#dashboard .section");if(data)section.querySelector(".notice").textContent=`Welcome, ${data.name}. You are signed in to AYANET GLOBAL.`;else section.querySelector(".notice").textContent="Your account is active. Your customer profile is being prepared.";}
-async function initialise(){
-  document.getElementById("year").textContent=new Date().getFullYear();
-  let failedStep="starting database session";
-  try{
-    const {data:{session},error:sessionError}=await db.auth.getSession();
-    if(sessionError)throw sessionError;
-    if(session){
-      currentUser=session.user;
-      failedStep="checking administrator access";
-      await checkAdmin();
-      failedStep="preparing customer profile";
-      await ensureCustomerProfile();
-    }
-    updateNavigation();
-    failedStep="loading software products (ayanet_global_products)";
-    await loadProducts();
-    failedStep="loading company settings (ayanet_global_company_settings)";
-    await loadCompanySettings();
-    if(isAdmin){
-      failedStep="loading administrator records";
-      await refreshAdmin();
-    }
-  }catch(e){
-    console.error("AYANET GLOBAL startup error:",e);
-    const details=[
-      "AYANET GLOBAL could not finish loading.",
-      "Step: "+failedStep,
-      "Error: "+(e?.message||String(e)),
-      e?.code?"Code: "+e.code:"",
-      e?.details?"Details: "+e.details:"",
-      e?.hint?"Hint: "+e.hint:""
-    ].filter(Boolean).join("\n\n");
-    alert(details);
-  }
-}
-db.auth.onAuthStateChange((_event,session)=>{setTimeout(async()=>{currentUser=session?.user||null;if(currentUser)await checkAdmin();else isAdmin=false;updateNavigation();},0);});
+$("invoiceSubscription").addEventListener("change",()=>{const s=subscriptions.find(x=>x.id===$("invoiceSubscription").value);if(!s)return;$("invoiceCustomer").value=s.customer_id;$("invoiceAmount").value=s.amount;$("invoiceCurrency").value=s.currency;$("invoiceDescription").value=(s.plan||"")+" subscription";});
+async function createInvoice(e){e.preventDefault();const row={id:makeId(),customer_id:$("invoiceCustomer").value,subscription_id:$("invoiceSubscription").value||null,invoice_number:$("invoiceNumber").value.trim(),amount:Number($("invoiceAmount").value),currency:$("invoiceCurrency").value,issue_date:$("invoiceIssueDate").value,due_date:$("invoiceDueDate").value||null,status:"Unpaid",description:$("invoiceDescription").value.trim()||null};if(!row.invoice_number||row.amount<=0){message("invoiceMessage","Enter a valid invoice number and amount.",true);return}const {error}=await db.from("ayanet_global_invoices").insert(row);if(error){message("invoiceMessage",error.message,true);return}message("invoiceMessage","Invoice created successfully.");e.target.reset();$("invoiceIssueDate").value=new Date().toISOString().slice(0,10);await refreshAdmin()}
+$("invoiceCustomer").addEventListener("change",()=>{if(!$("invoiceSubscription").value)$("invoiceAmount").value="";});
+$("paymentInvoice").addEventListener("change",()=>{const inv=invoices.find(i=>i.id===$("paymentInvoice").value);if(inv){$("paymentAmount").value=remainingBalance(inv).toFixed(2);$("paymentCurrency").value=inv.currency;}});
+function paidAmount(inv){return payments.filter(p=>p.invoice_id===inv.id&&p.status==="Completed").reduce((n,p)=>n+Number(p.amount),0)}
+function remainingBalance(inv){return Math.max(0,Number(inv.amount)-paidAmount(inv))}
+async function recordPayment(e){e.preventDefault();const inv=invoices.find(x=>x.id===$("paymentInvoice").value);if(!inv){message("paymentMessage","Choose an invoice first.",true);return}const amount=Number($("paymentAmount").value);if(amount<=0||amount>remainingBalance(inv)+0.0001){message("paymentMessage","Payment amount must be positive and cannot exceed the outstanding balance.",true);return}const row={id:makeId(),invoice_id:inv.id,customer_id:inv.customer_id,amount,currency:$("paymentCurrency").value,payment_method:$("paymentMethod").value||null,transaction_reference:$("paymentReference").value.trim()||null,payment_date:new Date($("paymentDate").value).toISOString(),status:$("paymentStatus").value};if(row.currency!==inv.currency){message("paymentMessage","Payment currency must match the invoice currency.",true);return}const {error}=await db.from("ayanet_global_payments").insert(row);if(error){message("paymentMessage",error.message,true);return}const {data:paymentRows,error:sumError}=await db.from("ayanet_global_payments").select("amount,status").eq("invoice_id",inv.id);if(sumError){message("paymentMessage","Payment was saved, but invoice balance could not be refreshed: "+sumError.message,true);return}const confirmed=(paymentRows||[]).filter(p=>p.status==="Completed").reduce((n,p)=>n+Number(p.amount),0);const invoiceStatus=confirmed>=Number(inv.amount)-0.0001?"Paid":confirmed>0?"Partially Paid":"Unpaid";const {error:updateError}=await db.from("ayanet_global_invoices").update({status:invoiceStatus}).eq("id",inv.id);if(updateError){message("paymentMessage","Payment was saved, but invoice status could not be updated: "+updateError.message,true);return}message("paymentMessage","Payment record saved. Remember: this does not process a transfer.");e.target.reset();$("paymentDate").value=new Date().toISOString().slice(0,16);await refreshAdmin()}
+async function syncInvoiceStatus(inv){const paid=paidAmount(inv);const status=paid>=Number(inv.amount)-0.0001?"Paid":paid>0?"Partially Paid":"Unpaid";const {error}=await db.from("ayanet_global_invoices").update({status}).eq("id",inv.id);if(error)throw error}
+async function renderRenewals(){const today=new Date().toISOString().slice(0,10),limit=new Date(Date.now()+30*86400000).toISOString().slice(0,10);const due=subscriptions.filter(s=>s.end_date<=limit&&!["Cancelled","Expired"].includes(s.status));if(!due.length){$("renewalTable").innerHTML='<p class="empty">No subscriptions are due to expire in the next 30 days.</p>';return}const rows=await Promise.all(due.map(async s=>{const r=reminders.filter(x=>x.subscription_id===s.id).sort((a,b)=>String(b.created_at).localeCompare(String(a.created_at)))[0];return `<tr><td>${esc(s.ayanet_global_customers?.name||"Customer")}</td><td>${esc(s.ayanet_global_products?.name||"Product")}</td><td>${esc(s.end_date)}</td><td>${r?esc(r.status):"No reminder logged"}</td><td>${r&&r.status==="Pending"?`<button class="small-btn edit-btn" onclick="markReminderSent('${esc(r.id)}')">Mark Sent</button>`:`<button class="small-btn edit-btn" onclick="createReminder('${esc(s.id)}','${esc(s.customer_id)}')">Log Reminder</button>`}</td></tr>`}));$("renewalTable").innerHTML=`<table><thead><tr><th>Customer</th><th>Product</th><th>Expiry</th><th>Reminder</th><th>Action</th></tr></thead><tbody>${rows.join("")}</tbody></table>`}
+async function createReminder(subscriptionId,customerId){const {error}=await db.from("ayanet_global_renewal_reminders").insert({id:makeId(),subscription_id:subscriptionId,customer_id:customerId,reminder_type:"Expiry",scheduled_date:new Date().toISOString().slice(0,10),status:"Pending"});if(error){message("reminderMessage",error.message,true);return}message("reminderMessage","Reminder log created. No email or SMS was sent.");await refreshAdmin()}
+async function markReminderSent(id){if(!confirm("Confirm that you have actually sent this reminder to the customer?"))return;const {error}=await db.from("ayanet_global_renewal_reminders").update({status:"Sent",sent_at:new Date().toISOString()}).eq("id",id);if(error){message("reminderMessage",error.message,true);return}message("reminderMessage","Reminder marked as sent.");await refreshAdmin()}
+function renderRevenueReport(){const el=$("revenueReport");if(!el)return;const period=$("reportPeriod").value||"month",now=new Date();const selected=payments.filter(p=>p.status==="Completed"&&(()=>{const d=new Date(p.payment_date);return period==="all"||(period==="year"&&d.getFullYear()===now.getFullYear())||(period==="month"&&d.getFullYear()===now.getFullYear()&&d.getMonth()===now.getMonth())})());const totals={};selected.forEach(p=>totals[p.currency]=(totals[p.currency]||0)+Number(p.amount));const currencies=Object.keys(totals).sort();el.innerHTML=currencies.length?`<div class="grid">${currencies.map(c=>`<div class="stat-card"><strong>${esc(c)} ${totals[c].toFixed(2)}</strong><span>Confirmed revenue</span></div>`).join("")}</div><p class="admin-note">${selected.length} completed payment record(s) included. Period: ${period==="month"?"current month":period==="year"?"current year":"all time"}.</p>`:'<p class="empty">No completed payments in this reporting period.</p>'}
+
+async function loadCompanySettings(){const {data,error}=await db.from("ayanet_global_company_settings").select("*").eq("id","main").maybeSingle();if(error)throw error;const s=data?{name:data.name,business:data.business,country:data.country||"",market:data.market,email:data.email||"",phone:data.phone||"",website:data.website||"",currency:data.currency}:defaultCompanySettings;$("companyName").value=s.name;$("companyBusiness").value=s.business;$("companyCountry").value=s.country;$("companyMarket").value=s.market;$("companyEmail").value=s.email;$("companyPhone").value=s.phone;$("companyWebsite").value=s.website;$("companyCurrency").value=s.currency;renderPublicCompanyProfile(s)}
+function renderPublicCompanyProfile(s){s=s||defaultCompanySettings;$("publicCompanyName").textContent="Welcome to "+s.name;$("publicBusinessDescription").textContent=s.business;$("publicCompanyLocation").textContent=[s.country,s.market].filter(Boolean).join(" • ");const a=[];if(s.email)a.push("Email: "+s.email);if(s.phone)a.push("Phone: "+s.phone);if(s.website)a.push("Website: "+s.website);$("publicCompanyContact").textContent=a.join(" | ")}
+async function saveCompanySettings(e){e.preventDefault();const row={id:"main",name:$("companyName").value.trim(),business:$("companyBusiness").value.trim(),country:$("companyCountry").value.trim(),market:$("companyMarket").value.trim(),email:$("companyEmail").value.trim(),phone:$("companyPhone").value.trim(),website:$("companyWebsite").value.trim(),currency:$("companyCurrency").value};if(row.website&&!/^https?:\/\//i.test(row.website)){message("companySettingsMessage","Enter a website beginning with https:// or http://.",true);return}const {error}=await db.from("ayanet_global_company_settings").upsert(row,{onConflict:"id"});if(error){message("companySettingsMessage",error.message,true);return}renderPublicCompanyProfile(row);message("companySettingsMessage","Company settings saved.")}
+async function resetCompanySettings(){if(!confirm("Restore default company settings?"))return;const {error}=await db.from("ayanet_global_company_settings").upsert({id:"main",...defaultCompanySettings},{onConflict:"id"});if(error){message("companySettingsMessage",error.message,true);return}await loadCompanySettings();message("companySettingsMessage","Default settings restored.")}
+async function loadCustomerDashboard(){if(!currentUser)return;const {data,error}=await db.from("ayanet_global_customers").select("*").eq("auth_user_id",currentUser.id).maybeSingle();if(error){console.error(error);return} $("customerWelcome").textContent=data?`Welcome, ${data.name}. You are signed in to AYANET GLOBAL.`:"Your account is active. Your customer profile is being prepared."}
+async function initialise(){ $("year").textContent=new Date().getFullYear();$("invoiceIssueDate").value=new Date().toISOString().slice(0,10);$("paymentDate").value=new Date().toISOString().slice(0,16);try{const {data:{session},error}=await db.auth.getSession();if(error)throw error;if(session){currentUser=session.user;await checkAdmin();if(!isAdmin)await ensureCustomerProfile()}updateNavigation();await loadProducts();await loadCompanySettings();if(isAdmin)await refreshAdmin()}catch(e){console.error("AYANET GLOBAL startup error:",e);alert("AYANET GLOBAL could not finish loading.\n\nError: "+(e?.message||String(e)))}}
+db.auth.onAuthStateChange((_event,session)=>{setTimeout(async()=>{currentUser=session?.user||null;if(currentUser)await checkAdmin();else isAdmin=false;updateNavigation()},0)});
 initialise();
 </script>
-
 </body>
 </html>
