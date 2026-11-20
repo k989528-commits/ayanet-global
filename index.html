@@ -215,7 +215,8 @@ footer span {color:var(--gold)}
     <button onclick="showPage('home')">Home</button>
     <button onclick="showPage('products')">Products</button>
     <button onclick="showPage('register')">Register</button>
-    <button onclick="showPage('login')">Login</button>
+    <button onclick="showPage('login')">Customer Login</button>
+    <button onclick="showPage('adminLogin')">Admin Login</button>
     <button onclick="showPage('dashboard')">My Account</button>
     <button onclick="showPage('admin')">Admin Centre</button>
   </nav>
@@ -341,6 +342,33 @@ footer span {color:var(--gold)}
       <div class="switch">
         New to AYANET?
         <button onclick="showPage('register')">Create an account</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ADMIN LOGIN -->
+<main id="adminLogin" class="page">
+  <section class="form-section">
+    <div class="form-card">
+      <h2>Administrator Login</h2>
+      <p class="intro">Secure access for approved AYANET GLOBAL administrators only.</p>
+      <div class="notice">Use your registered administrator account. Customer accounts cannot access the Admin Control Centre.</div>
+      <form onsubmit="loginAdmin(event)">
+        <div class="field">
+          <label>Administrator Email Address</label>
+          <input id="adminLoginEmail" type="email" required autocomplete="username" placeholder="Administrator email">
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input id="adminLoginPassword" type="password" required autocomplete="current-password" placeholder="Your password">
+        </div>
+        <button class="btn full" type="submit">Sign In to Admin Centre</button>
+      </form>
+      <div id="adminLoginMessage" class="success"></div>
+      <div class="switch">
+        Are you a customer?
+        <button onclick="showPage('login')">Customer Login</button>
       </div>
     </div>
   </section>
@@ -621,7 +649,50 @@ function cancelProductEditButton(){document.getElementById("cancelProductEdit").
 function cancelProductEdit(){editingProductId=null;document.getElementById("productForm").reset();productSaveButton.textContent="Add Product";document.getElementById("cancelProductEdit").style.display="none";}
 async function deleteProduct(id){const p=products.find(x=>x.id===id);if(!p||!confirm("Delete "+p.name+" from the catalogue?"))return;const {error}=await db.from("ayanet_global_products").delete().eq("id",id);if(error){message("productMessage",error.message,true);return;}await loadProducts();refreshAdmin();message("productMessage","Product deleted.");}
 async function registerCustomer(event){event.preventDefault();const name=regName.value.trim(),email=regEmail.value.trim(),country=regCountry.value.trim(),password=regPassword.value;const {data,error}=await db.auth.signUp({email,password,options:{data:{full_name:name,country}}});if(error){message("regMessage",error.message,true);return;}if(data.user&&data.session){const {error:insertError}=await db.from("ayanet_global_customers").insert({auth_user_id:data.user.id,name,email,country});if(insertError){message("regMessage","Your login was created, but your customer profile could not be saved. Please contact AYANET support.",true);return;}}message("regMessage",data.session?"Account created successfully. You can now log in.":"Registration received. Please check your email to confirm your account, then log in.");event.target.reset();}
-async function loginCustomer(event){event.preventDefault();const {data,error}=await db.auth.signInWithPassword({email:loginEmail.value.trim(),password:loginPassword.value});if(error){message("loginMessage",error.message,true);return;}currentUser=data.user;await checkAdmin();await ensureCustomerProfile();updateNavigation();message("loginMessage",isAdmin?"Administrator signed in successfully.":"You are signed in successfully.");if(isAdmin)setTimeout(()=>showPage("admin"),500);else setTimeout(()=>showPage("dashboard"),500);}
+async function loginCustomer(event){
+  event.preventDefault();
+  const {data,error}=await db.auth.signInWithPassword({
+    email:loginEmail.value.trim(),
+    password:loginPassword.value
+  });
+  if(error){message("loginMessage",error.message,true);return;}
+  currentUser=data.user;
+  await checkAdmin();
+  if(isAdmin){
+    await db.auth.signOut();
+    currentUser=null;
+    isAdmin=false;
+    updateNavigation();
+    message("loginMessage","This is an administrator account. Please use Admin Login.",true);
+    return;
+  }
+  await ensureCustomerProfile();
+  updateNavigation();
+  message("loginMessage","You are signed in successfully.");
+  setTimeout(()=>showPage("dashboard"),500);
+}
+
+async function loginAdmin(event){
+  event.preventDefault();
+  const {data,error}=await db.auth.signInWithPassword({
+    email:adminLoginEmail.value.trim(),
+    password:adminLoginPassword.value
+  });
+  if(error){message("adminLoginMessage",error.message,true);return;}
+  currentUser=data.user;
+  await checkAdmin();
+  if(!isAdmin){
+    await db.auth.signOut();
+    currentUser=null;
+    isAdmin=false;
+    updateNavigation();
+    message("adminLoginMessage","Access denied. This account is not registered as an AYANET GLOBAL administrator.",true);
+    return;
+  }
+  updateNavigation();
+  message("adminLoginMessage","Administrator signed in successfully.");
+  setTimeout(()=>showPage("admin"),500);
+}
 async function ensureCustomerProfile(){if(!currentUser)return;const {data}=await db.from("ayanet_global_customers").select("id").eq("auth_user_id",currentUser.id).maybeSingle();if(!data){const meta=currentUser.user_metadata||{};await db.from("ayanet_global_customers").insert({auth_user_id:currentUser.id,name:meta.full_name||currentUser.email,email:currentUser.email,country:meta.country||"Not provided"});}}
 async function checkAdmin(){if(!currentUser){isAdmin=false;return;}const {data,error}=await db.rpc("ayanet_global_is_admin");isAdmin=!error&&data===true;}
 async function logoutCustomer(){await db.auth.signOut();currentUser=null;isAdmin=false;updateNavigation();showPage("home");}
