@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -616,7 +617,7 @@ footer span {color:var(--gold)}
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
 const SUPABASE_URL = "https://jltadhukraspfdaxbvwo.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_tItrrAg_q9xSCskecgc5Jg_bJkxsOiu";
@@ -722,7 +723,41 @@ function renderPublicCompanyProfile(s){s=s||defaultCompanySettings;publicCompany
 async function saveCompanySettings(event){event.preventDefault();const row={id:"main",name:companyName.value.trim(),business:companyBusiness.value.trim(),country:companyCountry.value.trim(),market:companyMarket.value.trim(),email:companyEmail.value.trim(),phone:companyPhone.value.trim(),website:companyWebsite.value.trim(),currency:companyCurrency.value};if(row.website&&!/^https?:\/\//i.test(row.website)){message("companySettingsMessage","Enter a website beginning with https:// or http://.",true);return;}const {error}=await db.from("ayanet_global_company_settings").upsert(row,{onConflict:"id"});if(error){message("companySettingsMessage",error.message,true);return;}renderPublicCompanyProfile(row);message("companySettingsMessage","Company settings saved to AYANET GLOBAL.");}
 async function resetCompanySettings(){if(!confirm("Restore default company settings?"))return;const {error}=await db.from("ayanet_global_company_settings").upsert({id:"main",...defaultCompanySettings},{onConflict:"id"});if(error){message("companySettingsMessage",error.message,true);return;}await loadCompanySettings();message("companySettingsMessage","Default settings restored.");}
 async function loadCustomerDashboard(){if(!currentUser)return;const {data,error}=await db.from("ayanet_global_customers").select("*").eq("auth_user_id",currentUser.id).maybeSingle();if(error){console.error(error);return;}const section=document.querySelector("#dashboard .section");if(data)section.querySelector(".notice").textContent=`Welcome, ${data.name}. You are signed in to AYANET GLOBAL.`;else section.querySelector(".notice").textContent="Your account is active. Your customer profile is being prepared.";}
-async function initialise(){document.getElementById("year").textContent=new Date().getFullYear();try{const {data:{session}}=await db.auth.getSession();if(session){currentUser=session.user;await checkAdmin();await ensureCustomerProfile();}updateNavigation();await loadProducts();await loadCompanySettings();if(isAdmin)await refreshAdmin();}catch(e){console.error(e);alert("AYANET GLOBAL could not connect to the database. Please check your internet connection and try Refresh.");}}
+async function initialise(){
+  document.getElementById("year").textContent=new Date().getFullYear();
+  let failedStep="starting database session";
+  try{
+    const {data:{session},error:sessionError}=await db.auth.getSession();
+    if(sessionError)throw sessionError;
+    if(session){
+      currentUser=session.user;
+      failedStep="checking administrator access";
+      await checkAdmin();
+      failedStep="preparing customer profile";
+      await ensureCustomerProfile();
+    }
+    updateNavigation();
+    failedStep="loading software products (ayanet_global_products)";
+    await loadProducts();
+    failedStep="loading company settings (ayanet_global_company_settings)";
+    await loadCompanySettings();
+    if(isAdmin){
+      failedStep="loading administrator records";
+      await refreshAdmin();
+    }
+  }catch(e){
+    console.error("AYANET GLOBAL startup error:",e);
+    const details=[
+      "AYANET GLOBAL could not finish loading.",
+      "Step: "+failedStep,
+      "Error: "+(e?.message||String(e)),
+      e?.code?"Code: "+e.code:"",
+      e?.details?"Details: "+e.details:"",
+      e?.hint?"Hint: "+e.hint:""
+    ].filter(Boolean).join("\n\n");
+    alert(details);
+  }
+}
 db.auth.onAuthStateChange((_event,session)=>{setTimeout(async()=>{currentUser=session?.user||null;if(currentUser)await checkAdmin();else isAdmin=false;updateNavigation();},0);});
 initialise();
 </script>
